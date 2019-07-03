@@ -4,10 +4,7 @@
 #define DIRECTINPUT_VERSION 0x0800 
 
 // Window Basic Header
-#include <windows.h>
-#include <assert.h>
-#include <tchar.h>
-#include <math.h>
+#include "SUtils.h"
 
 // Direct 3D Headers
 #include <d3dx11.h>

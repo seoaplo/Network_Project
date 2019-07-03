@@ -20,9 +20,10 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{A432B4F8-3E04-4DD2-B7DD-FAACFB6EF5D3}</ProjectGuid>
-    <RootNamespace>My01SeverSocket0</RootNamespace>
+    <ProjectGuid>{743B39B6-8C32-4ADB-9B50-D67721EB1CB0}</ProjectGuid>
+    <RootNamespace>SNetWorkClient</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <ProjectName>SNetWorkClient</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -74,14 +75,6 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup />
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <Optimization>Disabled</Optimization>
-      <SDLCheck>true</SDLCheck>
-      <ConformanceMode>true</ConformanceMode>
-    </ClCompile>
-  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -89,6 +82,22 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
+    <PostBuildEvent>
+      <Command>copy ".\\*.h" "..\\include\\Server"
+copy "..\\..\\output\\Debug\\x64\\SScoerServer.lib" "..\\lib\\Debug\\x64"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <PostBuildEvent>
+      <Command>copy ".\\*.h" "..\\include\\Server"
+copy "..\\..\\output\\Debug\\x86\\SSCoreServer.lib" "..\\lib\\Debug\\x86"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -103,6 +112,10 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
+    <PostBuildEvent>
+      <Command>copy ".\\*.h" "..\\include\\Server"
+copy "..\\..\\output\\Release\\x86\\SSCoreServer.lib" "..\\lib\\Release\\x86"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -117,12 +130,24 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
+    <PostBuildEvent>
+      <Command>copy ".\\*.h" "..\\include\\Server"
+copy "..\\..\\output\\Release\\x64\\SSCoreServer.lib" "..\\lib\\Release\\x64"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Sample.cpp" />
+    <ClInclude Include="Protocol.h" />
+    <ClInclude Include="SAsyncSelect.h" />
+    <ClInclude Include="SEventSelect.h" />
+    <ClInclude Include="SNetWork.h" />
+    <ClInclude Include="SSelectModel.h" />
+    <ClInclude Include="SServerStd.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SServerStd.h" />
+    <ClCompile Include="SAsyncSelect.cpp" />
+    <ClCompile Include="SEventSelect.cpp" />
+    <ClCompile Include="SNetWork.cpp" />
+    <ClCompile Include="SSelectModel.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

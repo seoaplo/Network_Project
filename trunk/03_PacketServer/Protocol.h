@@ -21,6 +21,8 @@ typedef struct
 // type = 패킷 타입
 // msg  = 패킷 내용
 #define PACKET_CHAR_MSG 1000
+#define PACKET_CHAR_NAME_REQ 1001
+#define PACKET_CHAR_NAME_ACK 1002
 #define PACKET_CHARACTER_INFO 3000
 
 typedef struct

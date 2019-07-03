@@ -11,7 +11,6 @@ friend class SSpriteManager;
 //========================================================================
 	std::vector<PLANE_PNCTLIST> m_SpriteVertex;
 	std::vector<D3DXVECTOR2> m_VertexCenterList;
-	typedef std::vector<PLANE_TEXTURECOORD>::iterator Itor;
 	
 //========================================================================
 // 스프라이트 상태 값

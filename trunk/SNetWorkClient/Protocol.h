@@ -35,10 +35,10 @@ typedef struct {
 }USER_NAME_REQ;
 typedef struct {
 	int   iIndex;
-	char  szName[20];
+	char  szName[USER_NAME_SIZE];
 }USER_NAME_ACK;
 typedef struct {
-	char  szName[20];
+	char  szName[USER_NAME_SIZE];
 	char  msg[PACKET_MAX_DATA_SIZE - 20];// 메세지 실제 크기
 }USER_CHAT_MSG;
 

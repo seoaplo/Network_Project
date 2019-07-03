@@ -1,5 +1,5 @@
 #pragma once
-#include "SUtils.h"
+#include "SDxBasic.h"
 #include "STemplate.h"
 
 class SDirectWrite : public Singleton<SDirectWrite>

@@ -1,5 +1,6 @@
 #include "SServerStd.h"
 #include "Protocol.h"
+#include <string>
 #include <conio.h>
 
 DWORD WINAPI RecvThread(LPVOID arg)
@@ -10,24 +11,39 @@ DWORD WINAPI RecvThread(LPVOID arg)
 		char recvbuf[256] = { 0, };
 		UPACKET sendpacket;
 		ZeroMemory(&sendpacket, sizeof(sendpacket));
-
-		int iRecvByte = recv(sock, (char*)&sendpacket.ph, 4, 0);
-		if (iRecvByte == 0)
-		{
-			break;
-		}
+		int iRecvByte = 0;
+		iRecvByte = recv(sock, (char*)&sendpacket.ph, PACKET_HEADER_SIZE, 0);
 		if (iRecvByte == SOCKET_ERROR)
 		{
 			printf("서버 종료 됨");
 			break;
 		}
-		iRecvByte = recv(sock, sendpacket.msg, sendpacket.ph.len-4, 0);
-
-		if (iRecvByte == 0)
+		if (iRecvByte == PACKET_HEADER_SIZE)
 		{
-			break;
+			UPACKET packet;
+			ZeroMemory(&packet, sizeof(packet));
+			memcpy(&packet.ph, (char*)&sendpacket.ph, PACKET_HEADER_SIZE);
+			int iNumDataByte = packet.ph.len - PACKET_HEADER_SIZE;
+			iRecvByte = 0;
+			do {
+				int iByte = recv(sock, (char*)&packet.msg[iRecvByte], iNumDataByte - iRecvByte, 0);
+				iRecvByte += iByte;
+			} while (iNumDataByte > iRecvByte);
+
+			switch (packet.ph.type)
+			{
+				case PACKET_CHAR_MSG:
+				{
+							printf("%s", sendpacket.msg);
+					//Broadcast(packet);
+					iRecvByte = 0;
+				}break;
+				case PACKET_CHAR_NAME_SC_REQ:
+				{
+
+				}break;
+			}
 		}
-		printf("%s", sendpacket.msg);
 	}
 	closesocket(sock);
 	return 1;
@@ -43,13 +59,19 @@ DWORD WINAPI SendThread(LPVOID arg)
 	{
 		fgets(buf, 256, stdin);
 		if(buf[0] == '\n') break;
-		int iMsgSize = strlen(buf);
+		int iNameSize = strlen(buf);
+		
+		USER_BASE info;
+		ZeroMemory(&info, sizeof(info));
+		memcpy(info.szName, buf, iNameSize);
+
+		int iMsgSize = sizeof(info);
 
 		UPACKET sendpacket;
 		ZeroMemory(&sendpacket, sizeof(sendpacket));
 		sendpacket.ph.len = PACKET_HEADER_SIZE + iMsgSize;
-		sendpacket.ph.type = PACKET_CHAR_MSG;
-		memcpy(sendpacket.msg, buf, iMsgSize);
+		sendpacket.ph.type = PACKET_CHAR_NAME_CS_ACK;
+		memcpy(sendpacket.msg, &info, iMsgSize);
 
 		// 윈도우 받기, 보내기 버퍼가 준비되어 있다.
 		int iSendByte = send(sock,
