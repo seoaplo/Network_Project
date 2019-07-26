@@ -1,2 +1,156 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" />
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="SceenList.h">
+      <Filter>GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="SssAttacker.h">
+      <Filter>GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="SssBullet.h">
+      <Filter>GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="SssEffect.h">
+      <Filter>GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="SssFSM.h">
+      <Filter>GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="SssMainBoss.h">
+      <Filter>GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="SssPlayer.h">
+      <Filter>GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="SssResultLose.h">
+      <Filter>GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="SssResultWin.h">
+      <Filter>GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="SssSampler.h">
+      <Filter>GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="SssSceeen.h">
+      <Filter>GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="SssSceenManeger.h">
+      <Filter>GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="SssStage.h">
+      <Filter>GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="SssSubBoss1.h">
+      <Filter>GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="SssSubBoss2.h">
+      <Filter>GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="SssTitle.h">
+      <Filter>GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="SssTitleObject.h">
+      <Filter>GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="SssWall.h">
+      <Filter>GameLogic</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="SssAttacker.cpp">
+      <Filter>GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="SssBullet.cpp">
+      <Filter>GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="SssEffect.cpp">
+      <Filter>GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="SssFSM.cpp">
+      <Filter>GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="SssMainBoss.cpp">
+      <Filter>GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="SssPlayer.cpp">
+      <Filter>GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="SssPlayerAir.cpp">
+      <Filter>GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="SssPlayerClimb.cpp">
+      <Filter>GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="SssPlayerClimbJump.cpp">
+      <Filter>GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="SssPlayerDamege.cpp">
+      <Filter>GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="SssPlayerDash.cpp">
+      <Filter>GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="SssPlayerDashBreak.cpp">
+      <Filter>GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="SssPlayerDeath.cpp">
+      <Filter>GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="SssPlayerDown.cpp">
+      <Filter>GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="SssPlayerIdle.cpp">
+      <Filter>GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="SssPlayerJump.cpp">
+      <Filter>GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="SssPlayerRun.cpp">
+      <Filter>GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="SssPlayerStart.cpp">
+      <Filter>GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="SssPlayerVictory.cpp">
+      <Filter>GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="SssResultLose.cpp">
+      <Filter>GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="SssResultWin.cpp">
+      <Filter>GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="SssSampler.cpp">
+      <Filter>GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="SssSceeen.cpp">
+      <Filter>GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="SssSceenManeger.cpp">
+      <Filter>GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="SssStage.cpp">
+      <Filter>GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="SssSubBoss1.cpp">
+      <Filter>GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="SssSubBoss2.cpp">
+      <Filter>GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="SssTitle.cpp">
+      <Filter>GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="SssTitleObject.cpp">
+      <Filter>GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="SssWall.cpp">
+      <Filter>GameLogic</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="GameLogic">
+      <UniqueIdentifier>{5dfe8921-acbb-4074-9c0b-b119dac68979}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

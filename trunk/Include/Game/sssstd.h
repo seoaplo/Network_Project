@@ -7,7 +7,7 @@
 #include <list>
 #include <iostream>
 #include <fstream>
-#include "../include/fmod.hpp"
+#include "fmod.hpp"
 
 #pragma comment(lib, "./fmodlib/fmod_vc.lib")
 

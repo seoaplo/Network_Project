@@ -119,6 +119,56 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="SceenList.h" />
+    <ClInclude Include="SssAttacker.h" />
+    <ClInclude Include="SssBullet.h" />
+    <ClInclude Include="SssEffect.h" />
+    <ClInclude Include="SssFSM.h" />
+    <ClInclude Include="SssMainBoss.h" />
+    <ClInclude Include="SssPlayer.h" />
+    <ClInclude Include="SssResultLose.h" />
+    <ClInclude Include="SssResultWin.h" />
+    <ClInclude Include="SssSampler.h" />
+    <ClInclude Include="SssSceeen.h" />
+    <ClInclude Include="SssSceenManeger.h" />
+    <ClInclude Include="SssStage.h" />
+    <ClInclude Include="SssSubBoss1.h" />
+    <ClInclude Include="SssSubBoss2.h" />
+    <ClInclude Include="SssTitle.h" />
+    <ClInclude Include="SssTitleObject.h" />
+    <ClInclude Include="SssWall.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="SssAttacker.cpp" />
+    <ClCompile Include="SssBullet.cpp" />
+    <ClCompile Include="SssEffect.cpp" />
+    <ClCompile Include="SssFSM.cpp" />
+    <ClCompile Include="SssMainBoss.cpp" />
+    <ClCompile Include="SssPlayer.cpp" />
+    <ClCompile Include="SssPlayerAir.cpp" />
+    <ClCompile Include="SssPlayerClimb.cpp" />
+    <ClCompile Include="SssPlayerClimbJump.cpp" />
+    <ClCompile Include="SssPlayerDamege.cpp" />
+    <ClCompile Include="SssPlayerDash.cpp" />
+    <ClCompile Include="SssPlayerDashBreak.cpp" />
+    <ClCompile Include="SssPlayerDeath.cpp" />
+    <ClCompile Include="SssPlayerDown.cpp" />
+    <ClCompile Include="SssPlayerIdle.cpp" />
+    <ClCompile Include="SssPlayerJump.cpp" />
+    <ClCompile Include="SssPlayerRun.cpp" />
+    <ClCompile Include="SssPlayerStart.cpp" />
+    <ClCompile Include="SssPlayerVictory.cpp" />
+    <ClCompile Include="SssResultLose.cpp" />
+    <ClCompile Include="SssResultWin.cpp" />
+    <ClCompile Include="SssSampler.cpp" />
+    <ClCompile Include="SssSceeen.cpp" />
+    <ClCompile Include="SssSceenManeger.cpp" />
+    <ClCompile Include="SssStage.cpp" />
+    <ClCompile Include="SssSubBoss1.cpp" />
+    <ClCompile Include="SssSubBoss2.cpp" />
+    <ClCompile Include="SssTitle.cpp" />
+    <ClCompile Include="SssTitleObject.cpp" />
+    <ClCompile Include="SssWall.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
