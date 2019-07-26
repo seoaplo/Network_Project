@@ -18,6 +18,10 @@
       <Filter>Select</Filter>
     </ClInclude>
     <ClInclude Include="SNetWork.h" />
+    <ClInclude Include="SNetworkClient.h" />
+    <ClInclude Include="SStdSelect.h">
+      <Filter>Select</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SSelectModel.cpp">
@@ -30,5 +34,8 @@
       <Filter>Select</Filter>
     </ClCompile>
     <ClCompile Include="SNetWork.cpp" />
+    <ClCompile Include="SStdSelect.cpp">
+      <Filter>Select</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

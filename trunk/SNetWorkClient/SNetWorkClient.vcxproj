@@ -27,30 +27,30 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -84,7 +84,7 @@
     </ClCompile>
     <PostBuildEvent>
       <Command>copy ".\\*.h" "..\\include\\Server"
-copy "..\\..\\output\\Debug\\x64\\SScoerServer.lib" "..\\lib\\Debug\\x64"</Command>
+copy "..\\..\\output\\Debug\\x64\\$(ProjectName).lib" "..\\lib\\Debug\\x64"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -96,7 +96,7 @@ copy "..\\..\\output\\Debug\\x64\\SScoerServer.lib" "..\\lib\\Debug\\x64"</Comma
     </ClCompile>
     <PostBuildEvent>
       <Command>copy ".\\*.h" "..\\include\\Server"
-copy "..\\..\\output\\Debug\\x86\\SSCoreServer.lib" "..\\lib\\Debug\\x86"</Command>
+copy "..\\..\\output\\Debug\\x86\\$(ProjectName).lib" "..\\lib\\Debug\\x86"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -114,7 +114,7 @@ copy "..\\..\\output\\Debug\\x86\\SSCoreServer.lib" "..\\lib\\Debug\\x86"</Comma
     </Link>
     <PostBuildEvent>
       <Command>copy ".\\*.h" "..\\include\\Server"
-copy "..\\..\\output\\Release\\x86\\SSCoreServer.lib" "..\\lib\\Release\\x86"</Command>
+copy "..\\..\\output\\Release\\x86\\$(ProjectName).lib" "..\\lib\\Release\\x86"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -132,7 +132,7 @@ copy "..\\..\\output\\Release\\x86\\SSCoreServer.lib" "..\\lib\\Release\\x86"</C
     </Link>
     <PostBuildEvent>
       <Command>copy ".\\*.h" "..\\include\\Server"
-copy "..\\..\\output\\Release\\x64\\SSCoreServer.lib" "..\\lib\\Release\\x64"</Command>
+copy "..\\..\\output\\Release\\x64\\$(ProjectName).lib" "..\\lib\\Release\\x64"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -140,14 +140,17 @@ copy "..\\..\\output\\Release\\x64\\SSCoreServer.lib" "..\\lib\\Release\\x64"</C
     <ClInclude Include="SAsyncSelect.h" />
     <ClInclude Include="SEventSelect.h" />
     <ClInclude Include="SNetWork.h" />
+    <ClInclude Include="SNetworkClient.h" />
     <ClInclude Include="SSelectModel.h" />
     <ClInclude Include="SServerStd.h" />
+    <ClInclude Include="SStdSelect.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SAsyncSelect.cpp" />
     <ClCompile Include="SEventSelect.cpp" />
     <ClCompile Include="SNetWork.cpp" />
     <ClCompile Include="SSelectModel.cpp" />
+    <ClCompile Include="SStdSelect.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

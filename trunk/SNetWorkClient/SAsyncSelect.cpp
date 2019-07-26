@@ -62,11 +62,12 @@ LRESULT	SAsyncSelect::MsgProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 				wParam, FD_READ);
 		}break;
 	}
+	return true;
 }
 
-SAsyncSelect::SAsyncSelect(HWND hWnd)
+SAsyncSelect::SAsyncSelect(SOCKET sock)
 {
-	m_hWnd = hWnd;
+	m_Sock = sock;
 }
 
 

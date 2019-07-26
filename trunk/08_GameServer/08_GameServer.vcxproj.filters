@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Sample.cpp" />
+    <ClCompile Include="SServer.cpp" />
+    <ClCompile Include="SJoinThread.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="SGameThread.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="SThread.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="SPacketPool.cpp">
+      <Filter>Pool</Filter>
+    </ClCompile>
+    <ClCompile Include="SUserPool.cpp">
+      <Filter>Pool</Filter>
+    </ClCompile>
+    <ClCompile Include="SUser.cpp" />
+    <ClCompile Include="SPacketThread.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="SJoinPacketPool.cpp">
+      <Filter>Pool</Filter>
+    </ClCompile>
+    <ClCompile Include="SGamePacketPool.cpp">
+      <Filter>Pool</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SServer.h" />
+    <ClInclude Include="SJoinThread.h">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="SGameThread.h">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="SThread.h">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="SPacketPool.h">
+      <Filter>Pool</Filter>
+    </ClInclude>
+    <ClInclude Include="SUserPool.h">
+      <Filter>Pool</Filter>
+    </ClInclude>
+    <ClInclude Include="SServerStd.h">
+      <Filter>Basic_Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Protocol.h">
+      <Filter>Basic_Header</Filter>
+    </ClInclude>
+    <ClInclude Include="SUser.h" />
+    <ClInclude Include="SPacketThread.h">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="Lock.h">
+      <Filter>Basic_Header</Filter>
+    </ClInclude>
+    <ClInclude Include="SJoinPacketPool.h">
+      <Filter>Pool</Filter>
+    </ClInclude>
+    <ClInclude Include="SGamePacketPool.h">
+      <Filter>Pool</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Thread">
+      <UniqueIdentifier>{9505273c-dcda-4d98-aea0-dd8250e934bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pool">
+      <UniqueIdentifier>{ad53c6a8-4ab7-46c8-b3f0-dfdf12fd08a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Basic_Header">
+      <UniqueIdentifier>{ab763b18-0ec1-48ba-bd84-87e639f2b00b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

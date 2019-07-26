@@ -12,6 +12,7 @@
 #include <string>
 #include <map>
 #include <vector>
+#include <queue>
 #include <algorithm>
 #include <bitset>
 #include <limits>
@@ -20,25 +21,26 @@
 #include <fstream>
 
 
-using namespace std;
+typedef std::basic_string<CHAR>				C_STR;
+typedef std::basic_string<CHAR>::iterator	C_ITOR;
 
-typedef basic_string<TCHAR>				T_STR;
-typedef basic_string<TCHAR>::iterator	T_ITOR;
+typedef std::basic_string<TCHAR>				T_STR;
+typedef std::basic_string<TCHAR>::iterator	T_ITOR;
 
-typedef vector<basic_string<TCHAR>>	T_STR_VECTOR;
-typedef vector<string>				C_STR_VECTOR;
+typedef std::vector<std::basic_string<TCHAR>>	T_STR_VECTOR;
+typedef std::vector<std::string>				C_STR_VECTOR;
 
-typedef list<basic_string<TCHAR>>	T_STR_LIST;
-typedef string						CHAR_STRING;
+typedef std::list<std::basic_string<TCHAR>>	T_STR_LIST;
+typedef std::string						CHAR_STRING;
 
-typedef vector<DWORD>				DWORD_VECTOR;
-typedef	vector< DWORD >::iterator	DWORD_VECTOR_ITOR;
+typedef std::vector<DWORD>				DWORD_VECTOR;
+typedef	std::vector< DWORD >::iterator	DWORD_VECTOR_ITOR;
 
-typedef list<DWORD>					DWORD_LIST;
-typedef list<DWORD>::iterator		DWORD_LIST_ITOR;
+typedef std::list<DWORD>					DWORD_LIST;
+typedef std::list<DWORD>::iterator		DWORD_LIST_ITOR;
 
-typedef list< HANDLE >				HANDLE_LIST;
-typedef	list< HANDLE >::iterator	HANDLE_LIST_ITOR;
+typedef std::list< HANDLE >				HANDLE_LIST;
+typedef	std::list< HANDLE >::iterator	HANDLE_LIST_ITOR;
 
 
 #ifdef _WIN64

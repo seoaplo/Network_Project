@@ -1,0 +1,9 @@
+CREATE DATABASE [AAAA]
+GO
+USE [AAAA]
+GO
+CREATE TABLE USERLIST(
+		[ID] [nchar](10),
+		[ps] [nchar](10)
+)
+GO
