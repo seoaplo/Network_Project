@@ -1,8 +1,7 @@
 #pragma once
-#include "Ssslibheader.h"
+#include "Game/Ssslibheader.h"
 #include "SssFSM.h"
 #include "SssEffect.h"
-#include "SssAttacker.h"
 
 enum PlayerState
 {
@@ -133,9 +132,6 @@ private:
 	float DashEffectMaxTime;
 	SssEffect DashEffect;
 	SssSprite* DashEffectSprite;
-private:
-	SssAttacker MyAttacker;
-	POINT AttackerPoint;
 private:
 	RECT CheckWallRect;
 	POINT MyBeforePos;

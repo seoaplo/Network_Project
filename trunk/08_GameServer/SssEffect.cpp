@@ -2,8 +2,8 @@
 
 
 
-bool SssEffect::Init(HDC OffScreen, POINT TargetPos, HDC WindowDC, TCHAR* RouteString, TCHAR* RectString,
-	COLORREF COLOR, TCHAR* RectRouteString, char* SoundString, float LifeSecond)
+bool SssEffect::Init(HDC OffScreen, POINT TargetPos, HDC WindowDC, const TCHAR* RouteString, const TCHAR* RectString,
+	COLORREF COLOR, const TCHAR* RectRouteString, const char* SoundString, float LifeSecond)
 {
 	MyOffScreen = OffScreen;
 	MyScreen = CreateCompatibleDC(WindowDC);

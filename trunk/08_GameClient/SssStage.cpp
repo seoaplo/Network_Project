@@ -3,6 +3,25 @@
 
 bool SssStage::Init(HDC WindowDC, HDC OffScreen)
 {
+	m_Client.Init();
+	PACKET JoinPack;
+	ZeroMemory(&JoinPack, PACKET_MAX_DATA_SIZE);
+	JoinPack.Header.type = PACKET_JOIN_SIGNIN_CS;
+	JoinPack.Header.len = PACKET_HEADER_SIZE;
+
+	I_SendPacketPool.Push(JoinPack);
+	
+	while (1)
+	{
+		PacketProcess();
+		if (m_bLogin)
+		{
+			break;
+		}
+	}
+
+	return true;
+
 	MyWindowDC = WindowDC;
 	MyOffScreenDC = OffScreen;
 
@@ -14,10 +33,10 @@ bool SssStage::Init(HDC WindowDC, HDC OffScreen)
 	rect.top = 0;
 	rect.right = 2048;
 	rect.bottom = 768;
-	UINT Key = SingleImegeManeger.CreateImege(rect, L"../Data/StageGound.bmp", WindowDC);
+	UINT Key = SingleImegeManeger.CreateImege(rect, L"../../../data/StageGound.bmp", WindowDC);
 	MyBackGroundImege = SingleImegeManeger.GetImege(Key);
 
-	iSoundIndex = SingleSoundManeger.Load("../Data/sigma.mp3");
+	iSoundIndex = SingleSoundManeger.Load("../../../data/sigma.mp3");
 	
 	MyPoint.x = 1024;
 	MyPoint.y = 768 / 2;
@@ -176,6 +195,9 @@ bool SssStage::Init(HDC WindowDC, HDC OffScreen)
 
 bool SssStage::Frame()
 {
+	m_Client.Frame();
+	return true;
+
 	SingleInput.CheckKeyState(VK_SPACE);
 	SingleInput.CheckKeyState(VK_SHIFT);
 	SingleInput.CheckKeyState(VK_CONTROL);
@@ -272,6 +294,8 @@ bool SssStage::Frame()
 }
 bool SssStage::Render()
 {
+	return true;
+
 	COLORREF bkColor = RGB(255, 0, 0);
 	HBRUSH hbrBack = CreateSolidBrush(bkColor);
 	HBRUSH hbrOld = (HBRUSH)SelectObject(MyScreen, hbrBack);
@@ -292,6 +316,10 @@ bool SssStage::Render()
 }
 bool SssStage::Release()
 {
+	m_Client.Release();
+	m_bLogin = false;
+	return true;
+
 	std::list<SssObject*>::iterator Itor;
 	for (Itor = MyObjectList.begin(); Itor != MyObjectList.end(); Itor++)
 	{
@@ -304,12 +332,32 @@ bool SssStage::Release()
 	DeleteObject(SelectObject(MyScreen, OldBitMap));
 	DeleteDC(MyScreen);
 	
+	m_Client.Release();
 	return true;
 }
 
+bool SssStage::PacketProcess()
+{
+	if (I_RecvPacketPool.Empty() == false)
+	{
+		PACKET pack = I_RecvPacketPool.Pop();
+
+		switch (pack.Header.type)
+		{
+		case PACKET_JOIN_USER_SC:
+			int kkk;
+			kkk = 10;
+			break;
+		default:
+			break;
+		}
+	}
+	return true;
+}
 
 SssStage::SssStage()
 {
+	m_bLogin = false;
 }
 
 

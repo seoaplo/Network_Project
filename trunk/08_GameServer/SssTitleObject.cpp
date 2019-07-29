@@ -1,7 +1,7 @@
 #include "SssTitleObject.h"
 
-bool SssTitleObject::Init(HDC OffScreen, POINT TargetPos, HDC WindowDC, char* SoundStirng, RECT TargetRect,
-	TCHAR* RouteString, TCHAR* RectString, TCHAR* RectRouteString, COLORREF TargetColor, bool Check, float fScale)
+bool SssTitleObject::Init(HDC OffScreen, POINT TargetPos, HDC WindowDC, const char* SoundStirng, RECT TargetRect,
+	const TCHAR* RouteString, const TCHAR* RectString, const TCHAR* RectRouteString, COLORREF TargetColor, bool Check, float fScale)
 {
 	MyOffScreen = OffScreen;
 	MyPos = TargetPos;
@@ -22,8 +22,8 @@ bool SssTitleObject::Init(HDC OffScreen, POINT TargetPos, HDC WindowDC, char* So
 	bInside = false;
 	return true;
 }
-bool SssTitleObject::Init(HDC OffScreen, POINT TargetPos, HDC WindowDC, char* SoundStirng, RECT TargetRect,
-	TCHAR* RouteString, TCHAR* RectString, TCHAR* RectRouteString, TCHAR* MaskRouteString, bool Check, float fScale)
+bool SssTitleObject::Init(HDC OffScreen, POINT TargetPos, HDC WindowDC, const char* SoundStirng, RECT TargetRect,
+	const TCHAR* RouteString, const TCHAR* RectString, const TCHAR* RectRouteString, const TCHAR* MaskRouteString, bool Check, float fScale)
 {
 	MyOffScreen = OffScreen;
 	MyPos = TargetPos;
@@ -111,8 +111,8 @@ SssTitleObject::~SssTitleObject()
 }
 
 
-bool SssStartObject::Init(HDC OffScreen, POINT TargetPos, HDC WindowDC, char* SoundStirng, RECT TargetRect,
-	TCHAR* RouteString, TCHAR* RectString, TCHAR* RectRouteString, COLORREF TargetColor, bool Check, float fScale)
+bool SssStartObject::Init(HDC OffScreen, POINT TargetPos, HDC WindowDC, const char* SoundStirng, RECT TargetRect,
+	const TCHAR* RouteString, const TCHAR* RectString, const TCHAR* RectRouteString, COLORREF TargetColor, bool Check, float fScale)
 {
 	MyOffScreen = OffScreen;
 	MyPos = TargetPos;
@@ -133,8 +133,8 @@ bool SssStartObject::Init(HDC OffScreen, POINT TargetPos, HDC WindowDC, char* So
 	bInside = false;
 	return true;
 }
-bool SssStartObject::Init(HDC OffScreen, POINT TargetPos, HDC WindowDC, char* SoundStirng, RECT TargetRect,
-	TCHAR* RouteString, TCHAR* RectString, TCHAR* RectRouteString, TCHAR* MaskRouteString, bool Check, float fScale)
+bool SssStartObject::Init(HDC OffScreen, POINT TargetPos, HDC WindowDC, const char* SoundStirng, RECT TargetRect,
+	const TCHAR* RouteString, const TCHAR* RectString, const TCHAR* RectRouteString, const TCHAR* MaskRouteString, bool Check, float fScale)
 {
 	MyOffScreen = OffScreen;
 	MyPos = TargetPos;
@@ -214,8 +214,8 @@ bool SssStartObject::Release()
 }
 
 
-bool SssExitObject::Init(HDC OffScreen, POINT TargetPos, HDC WindowDC, char* SoundStirng, RECT TargetRect,
-	TCHAR* RouteString, TCHAR* RectString, TCHAR* RectRouteString, COLORREF TargetColor, bool Check, float fScale)
+bool SssExitObject::Init(HDC OffScreen, POINT TargetPos, HDC WindowDC, const char* SoundStirng, RECT TargetRect,
+	const TCHAR* RouteString, const TCHAR* RectString, const TCHAR* RectRouteString, COLORREF TargetColor, bool Check, float fScale)
 {
 	MyOffScreen = OffScreen;
 	MyPos = TargetPos;
@@ -236,8 +236,8 @@ bool SssExitObject::Init(HDC OffScreen, POINT TargetPos, HDC WindowDC, char* Sou
 	bInside = false;
 	return true;
 }
-bool SssExitObject::Init(HDC OffScreen, POINT TargetPos, HDC WindowDC, char* SoundStirng, RECT TargetRect,
-	TCHAR* RouteString, TCHAR* RectString, TCHAR* RectRouteString, TCHAR* MaskRouteString, bool Check, float fScale)
+bool SssExitObject::Init(HDC OffScreen, POINT TargetPos, HDC WindowDC, const char* SoundStirng, RECT TargetRect,
+	const TCHAR* RouteString, const TCHAR* RectString, const TCHAR* RectRouteString, const TCHAR* MaskRouteString, bool Check, float fScale)
 {
 	MyOffScreen = OffScreen;
 	MyPos = TargetPos;

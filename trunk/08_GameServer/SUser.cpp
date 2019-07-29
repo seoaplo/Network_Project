@@ -3,7 +3,8 @@
 bool SUser::Init()
 {
 	m_bReady = false;
-	bConnect = false;
+	m_bConnect = false;
+	m_bDisConnect = false;
 
 	m_iNum = -1;
 
@@ -14,12 +15,14 @@ bool SUser::Init()
 
 	ZeroMemory(m_szRecvBuffer, sizeof(char) * MAX_USER_BUFFER_SIZE);
 	ZeroMemory(m_szPackStream, sizeof(char) * MAX_STREAM_SIZE);
+	return true;
 }
 
 bool SUser::Release()
 {
 	m_bReady = false;
-	bConnect = false;
+	m_bConnect = false;
+	m_bDisConnect = false;
 
 	m_iNum = -1;
 
@@ -32,6 +35,7 @@ bool SUser::Release()
 	ZeroMemory(m_szPackStream, sizeof(char) * MAX_STREAM_SIZE);
 
 	closesocket(m_sock);
+	return true;
 }
 
 void SUser::Put(char* pBuffer, DWORD dwByte)
@@ -63,7 +67,9 @@ void SUser::Put(char* pBuffer, DWORD dwByte)
 				
 				SPacket UserPacket;
 				ZeroMemory(&UserPacket, sizeof(UserPacket));
-				memcpy(&UserPacket, &m_szPackStream[m_dwStartPos], UserPacket.pack.Header.len);
+				
+				UserPacket.UserID = m_iNum;
+				memcpy(&UserPacket.pack, &m_szPackStream[m_dwStartPos], CheckPacket.Header.len);
 
 				m_dwReadPos -= UserPacket.pack.Header.len;
 				m_dwStartPos += UserPacket.pack.Header.len;
@@ -87,7 +93,7 @@ void SUser::Put(char* pBuffer, DWORD dwByte)
 bool SUser::Recv()
 {
 	SScopeRock_Mutex Lock(m_Mutex);
-	DWORD dwTransfer, flag = 0;
+	DWORD dwTransfer = 0, flag = 0;
 	int iRet = recv(m_sock, m_szRecvBuffer, MAX_USER_BUFFER_SIZE, NULL);
 	if (iRet == SOCKET_ERROR)
 	{
@@ -97,9 +103,14 @@ bool SUser::Recv()
 			return false;
 		}
 	}
+	else if (iRet == 0)
+	{
+		E_MSG("Server::recv");
+		return false;
+	}
 	else
 	{
-		Put(m_szRecvBuffer, dwTransfer);
+		Put(m_szRecvBuffer, iRet);
 	}
 	return true;
 }

@@ -29,7 +29,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -42,7 +42,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -81,6 +81,9 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
+    <Link>
+      <AdditionalOptions>/verbose:lib %(AdditionalOptions)</AdditionalOptions>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -127,7 +130,6 @@
     <ClCompile Include="SPacketPool.cpp" />
     <ClCompile Include="SPacketThread.cpp" />
     <ClCompile Include="SServer.cpp" />
-    <ClCompile Include="SssAttacker.cpp" />
     <ClCompile Include="SssBullet.cpp" />
     <ClCompile Include="SssEffect.cpp" />
     <ClCompile Include="SssFSM.cpp" />
@@ -162,8 +164,6 @@
     <ClCompile Include="SUserPool.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Lock.h" />
-    <ClInclude Include="Protocol.h" />
     <ClInclude Include="SceenList.h" />
     <ClInclude Include="SGamePacketPool.h" />
     <ClInclude Include="SGameThread.h" />
@@ -172,8 +172,6 @@
     <ClInclude Include="SPacketPool.h" />
     <ClInclude Include="SPacketThread.h" />
     <ClInclude Include="SServer.h" />
-    <ClInclude Include="SServerStd.h" />
-    <ClInclude Include="SssAttacker.h" />
     <ClInclude Include="SssBullet.h" />
     <ClInclude Include="SssEffect.h" />
     <ClInclude Include="SssFSM.h" />

@@ -1,4 +1,5 @@
 #pragma once
+#include "SClient.h"
 #include "SssSceeen.h"
 #include "SssPlayer.h"
 #include "SssWall.h"
@@ -21,11 +22,17 @@ public:
 	float VictoryMaxTime;
 	float LoseTime;
 	float LoseMaxTime;
+
+	SClient m_Client;
+	bool	m_bLogin;
+	
 public:
 	virtual bool Init(HDC WindowDC, HDC OffScreen);
 	virtual bool Frame();
 	virtual bool Render();
 	virtual bool Release();
+public:
+	bool PacketProcess();
 public:
 	SssStage();
 	~SssStage();

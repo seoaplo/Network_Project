@@ -1,0 +1,26 @@
+﻿  SssCollisionManeger.cpp
+  SssCore.cpp
+e:\winapi\sssgame\00_ssslibrary\ssscore.cpp(112): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  SssObject.cpp
+  SssSound.cpp
+e:\winapi\sssgame\00_ssslibrary\ssssound.cpp(67): warning C4244: 'return': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  SssWindow.cpp
+  00_SssLibrary.vcxproj -> E:\WinAPI\SssGame\00_SssLibrary\../../output/Release/x64/00_SssLibrary.lib
+  .\\SssBitMap.h
+  .\\SssBitMapManeger.h
+  .\\SssCollider.h
+  .\\SssCollisionManeger.h
+  .\\SssCore.h
+  .\\SssImege.h
+  .\\SssImegeManeger.h
+  .\\SssInput.h
+  .\\Ssslibheader.h
+  .\\SssObject.h
+  .\\SssSound.h
+  .\\SssSprite.h
+  .\\SssSpriteManeger.h
+  .\\SssStd.h
+  .\\SssTimer.h
+  .\\SssWindow.h
+         16개 파일이 복사되었습니다.
+          1개 파일이 복사되었습니다.

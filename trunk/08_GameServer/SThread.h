@@ -2,6 +2,8 @@
 #include "SServerStd.h"
 #include "Protocol.h"
 #include "SUserPool.h"
+//#include "Game/sssstd.h"
+
 class SThread
 {
 public:

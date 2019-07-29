@@ -30,6 +30,7 @@ bool SJoinThread::Frame()
 bool SJoinThread::Release()
 {
 	CloseHandle(m_hThread);
+	return true;
 }
 
 

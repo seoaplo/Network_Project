@@ -6,6 +6,7 @@
 
 class SJoinPacketPool : public Singleton<SJoinPacketPool>
 {
+	friend class Singleton<SJoinPacketPool>;
 public:
 	std::queue<SPacket> m_PacketPool;
 	SmartMutex Mutex;

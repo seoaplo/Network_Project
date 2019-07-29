@@ -6,6 +6,7 @@
 
 class SUserPool : public Singleton<SUserPool>
 {
+	friend class Singleton<SUserPool>;
 public:
 	int m_iUserMax;
 	SmartMutex Mutex;
@@ -16,6 +17,7 @@ public:
 public:
 	SUser& GetUser(int iUserNum)
 	{
+		SScopeRock_Mutex ScopeLock(Mutex);
 		return m_UserPool[iUserNum];
 	}
 public:

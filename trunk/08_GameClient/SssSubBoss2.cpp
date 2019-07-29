@@ -15,7 +15,7 @@ bool SssSubBoss2::Init(HDC OffScreen, POINT TargetPos, HDC WindowDC)
 	MyRect.right = 87 + MyRect.left;
 	MyRect.bottom = 123 + MyRect.top;
 
-	UINT Key = SingleImegeManeger.CreateImege(MyRect, L"../Data/SubBoss2.bmp", WindowDC);
+	UINT Key = SingleImegeManeger.CreateImege(MyRect, L"../../../data/SubBoss2.bmp", WindowDC);
 	MyReadyImege = SingleImegeManeger.GetImege(Key);
 
 	MyRect.left = 406;
@@ -23,7 +23,7 @@ bool SssSubBoss2::Init(HDC OffScreen, POINT TargetPos, HDC WindowDC)
 	MyRect.right = 76 + MyRect.left;
 	MyRect.bottom = 131 + MyRect.top;
 
-	Key = SingleImegeManeger.CreateImege(MyRect, L"../Data/SubBoss2.bmp", WindowDC);
+	Key = SingleImegeManeger.CreateImege(MyRect, L"../../../data/SubBoss2.bmp", WindowDC);
 	MyAttackImege = SingleImegeManeger.GetImege(Key);
 
 	MyRect.left = 314;
@@ -31,14 +31,14 @@ bool SssSubBoss2::Init(HDC OffScreen, POINT TargetPos, HDC WindowDC)
 	MyRect.right = 36 + MyRect.left;
 	MyRect.bottom = 22 + MyRect.top;
 
-	Key = SingleImegeManeger.CreateImege(MyRect, L"../Data/SubBoss2.bmp", WindowDC);
+	Key = SingleImegeManeger.CreateImege(MyRect, L"../../../data/SubBoss2.bmp", WindowDC);
 	MyReadyWeponImege = SingleImegeManeger.GetImege(Key);
 
 	MyRect.left = 442;
 	MyRect.top = 149;
 	MyRect.right = 102 + MyRect.left;
 	MyRect.bottom = 31 + MyRect.top;
-	Key = SingleImegeManeger.CreateImege(MyRect, L"../Data/SubBoss2.bmp", WindowDC);
+	Key = SingleImegeManeger.CreateImege(MyRect, L"../../../data/SubBoss2.bmp", WindowDC);
 	MyAttackWeponImege = SingleImegeManeger.GetImege(Key);
 	
 	MyRect.left = 0;
@@ -46,7 +46,7 @@ bool SssSubBoss2::Init(HDC OffScreen, POINT TargetPos, HDC WindowDC)
 	MyRect.right = 80 * 3;
 	MyRect.bottom = 131 * 3;
 
-	iSoundIndex = SingleSoundManeger.Load("../Data/SubBoss2.wav");
+	iSoundIndex = SingleSoundManeger.Load("../../../data/SubBoss2.wav");
 	MyCollider = &CollisionManeger.AddCollider(MyPos, MyRect, this, Col_Rect);
 
 	MyColor = RGB(255, 0, 255);

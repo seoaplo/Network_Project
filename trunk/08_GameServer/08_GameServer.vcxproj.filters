@@ -31,92 +31,89 @@
     <ClCompile Include="SssSampler.cpp">
       <Filter>GameLogic</Filter>
     </ClCompile>
-    <ClCompile Include="SssStage.cpp">
-      <Filter>GameLogic</Filter>
-    </ClCompile>
-    <ClCompile Include="SssFSM.cpp">
-      <Filter>GameLogic</Filter>
-    </ClCompile>
     <ClCompile Include="SssPlayer.cpp">
-      <Filter>GameLogic</Filter>
-    </ClCompile>
-    <ClCompile Include="SssEffect.cpp">
-      <Filter>GameLogic</Filter>
-    </ClCompile>
-    <ClCompile Include="SssSceenManeger.cpp">
-      <Filter>GameLogic</Filter>
-    </ClCompile>
-    <ClCompile Include="SssPlayerIdle.cpp">
-      <Filter>GameLogic</Filter>
-    </ClCompile>
-    <ClCompile Include="SssPlayerClimbJump.cpp">
-      <Filter>GameLogic</Filter>
-    </ClCompile>
-    <ClCompile Include="SssPlayerRun.cpp">
-      <Filter>GameLogic</Filter>
-    </ClCompile>
-    <ClCompile Include="SssPlayerClimb.cpp">
-      <Filter>GameLogic</Filter>
-    </ClCompile>
-    <ClCompile Include="SssPlayerDamege.cpp">
-      <Filter>GameLogic</Filter>
+      <Filter>GameLogic\Object\Player</Filter>
     </ClCompile>
     <ClCompile Include="SssPlayerDash.cpp">
-      <Filter>GameLogic</Filter>
-    </ClCompile>
-    <ClCompile Include="SssPlayerDeath.cpp">
-      <Filter>GameLogic</Filter>
-    </ClCompile>
-    <ClCompile Include="SssPlayerDown.cpp">
-      <Filter>GameLogic</Filter>
-    </ClCompile>
-    <ClCompile Include="SssPlayerJump.cpp">
-      <Filter>GameLogic</Filter>
-    </ClCompile>
-    <ClCompile Include="SssPlayerVictory.cpp">
-      <Filter>GameLogic</Filter>
-    </ClCompile>
-    <ClCompile Include="SssPlayerAir.cpp">
-      <Filter>GameLogic</Filter>
+      <Filter>GameLogic\Object\Player\Ground</Filter>
     </ClCompile>
     <ClCompile Include="SssPlayerDashBreak.cpp">
-      <Filter>GameLogic</Filter>
+      <Filter>GameLogic\Object\Player\Ground</Filter>
+    </ClCompile>
+    <ClCompile Include="SssPlayerRun.cpp">
+      <Filter>GameLogic\Object\Player\Ground</Filter>
+    </ClCompile>
+    <ClCompile Include="SssPlayerClimb.cpp">
+      <Filter>GameLogic\Object\Player\Climb</Filter>
+    </ClCompile>
+    <ClCompile Include="SssPlayerClimbJump.cpp">
+      <Filter>GameLogic\Object\Player\Climb</Filter>
+    </ClCompile>
+    <ClCompile Include="SssPlayerDown.cpp">
+      <Filter>GameLogic\Object\Player\Air</Filter>
+    </ClCompile>
+    <ClCompile Include="SssPlayerJump.cpp">
+      <Filter>GameLogic\Object\Player\Air</Filter>
+    </ClCompile>
+    <ClCompile Include="SssPlayerAir.cpp">
+      <Filter>GameLogic\Object\Player\Air</Filter>
+    </ClCompile>
+    <ClCompile Include="SssPlayerDamege.cpp">
+      <Filter>GameLogic\Object\Player\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="SssPlayerDeath.cpp">
+      <Filter>GameLogic\Object\Player\Other</Filter>
     </ClCompile>
     <ClCompile Include="SssPlayerStart.cpp">
-      <Filter>GameLogic</Filter>
+      <Filter>GameLogic\Object\Player\Other</Filter>
     </ClCompile>
-    <ClCompile Include="SssAttacker.cpp">
-      <Filter>GameLogic</Filter>
+    <ClCompile Include="SssPlayerVictory.cpp">
+      <Filter>GameLogic\Object\Player\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="SssPlayerIdle.cpp">
+      <Filter>GameLogic\Object\Player\Ground</Filter>
+    </ClCompile>
+    <ClCompile Include="SssFSM.cpp">
+      <Filter>GameLogic\FSM</Filter>
     </ClCompile>
     <ClCompile Include="SssMainBoss.cpp">
-      <Filter>GameLogic</Filter>
-    </ClCompile>
-    <ClCompile Include="SssBullet.cpp">
-      <Filter>GameLogic</Filter>
+      <Filter>GameLogic\Object\Boss</Filter>
     </ClCompile>
     <ClCompile Include="SssSubBoss1.cpp">
-      <Filter>GameLogic</Filter>
-    </ClCompile>
-    <ClCompile Include="SssTitleObject.cpp">
-      <Filter>GameLogic</Filter>
-    </ClCompile>
-    <ClCompile Include="SssTitle.cpp">
-      <Filter>GameLogic</Filter>
+      <Filter>GameLogic\Object\Boss</Filter>
     </ClCompile>
     <ClCompile Include="SssSubBoss2.cpp">
-      <Filter>GameLogic</Filter>
+      <Filter>GameLogic\Object\Boss</Filter>
     </ClCompile>
-    <ClCompile Include="SssResultLose.cpp">
-      <Filter>GameLogic</Filter>
-    </ClCompile>
-    <ClCompile Include="SssResultWin.cpp">
-      <Filter>GameLogic</Filter>
-    </ClCompile>
-    <ClCompile Include="SssWall.cpp">
-      <Filter>GameLogic</Filter>
+    <ClCompile Include="SssEffect.cpp">
+      <Filter>GameLogic\Object\Effect</Filter>
     </ClCompile>
     <ClCompile Include="SssSceeen.cpp">
-      <Filter>GameLogic</Filter>
+      <Filter>GameLogic\Sceene</Filter>
+    </ClCompile>
+    <ClCompile Include="SssSceenManeger.cpp">
+      <Filter>GameLogic\Sceene</Filter>
+    </ClCompile>
+    <ClCompile Include="SssResultLose.cpp">
+      <Filter>GameLogic\Sceene</Filter>
+    </ClCompile>
+    <ClCompile Include="SssResultWin.cpp">
+      <Filter>GameLogic\Sceene</Filter>
+    </ClCompile>
+    <ClCompile Include="SssStage.cpp">
+      <Filter>GameLogic\Sceene</Filter>
+    </ClCompile>
+    <ClCompile Include="SssTitle.cpp">
+      <Filter>GameLogic\Sceene</Filter>
+    </ClCompile>
+    <ClCompile Include="SssTitleObject.cpp">
+      <Filter>GameLogic\Object\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="SssWall.cpp">
+      <Filter>GameLogic\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="SssBullet.cpp">
+      <Filter>GameLogic\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -136,18 +133,9 @@
     <ClInclude Include="SUserPool.h">
       <Filter>Pool</Filter>
     </ClInclude>
-    <ClInclude Include="SServerStd.h">
-      <Filter>Basic_Header</Filter>
-    </ClInclude>
-    <ClInclude Include="Protocol.h">
-      <Filter>Basic_Header</Filter>
-    </ClInclude>
     <ClInclude Include="SUser.h" />
     <ClInclude Include="SPacketThread.h">
       <Filter>Thread</Filter>
-    </ClInclude>
-    <ClInclude Include="Lock.h">
-      <Filter>Basic_Header</Filter>
     </ClInclude>
     <ClInclude Include="SJoinPacketPool.h">
       <Filter>Pool</Filter>
@@ -155,59 +143,56 @@
     <ClInclude Include="SGamePacketPool.h">
       <Filter>Pool</Filter>
     </ClInclude>
-    <ClInclude Include="SssPlayer.h">
-      <Filter>GameLogic</Filter>
-    </ClInclude>
-    <ClInclude Include="SssWall.h">
-      <Filter>GameLogic</Filter>
-    </ClInclude>
-    <ClInclude Include="SssAttacker.h">
-      <Filter>GameLogic</Filter>
-    </ClInclude>
-    <ClInclude Include="SssBullet.h">
-      <Filter>GameLogic</Filter>
-    </ClInclude>
-    <ClInclude Include="SssResultLose.h">
-      <Filter>GameLogic</Filter>
-    </ClInclude>
-    <ClInclude Include="SssSceenManeger.h">
-      <Filter>GameLogic</Filter>
-    </ClInclude>
-    <ClInclude Include="SssStage.h">
-      <Filter>GameLogic</Filter>
-    </ClInclude>
-    <ClInclude Include="SssSubBoss1.h">
-      <Filter>GameLogic</Filter>
-    </ClInclude>
-    <ClInclude Include="SssSubBoss2.h">
-      <Filter>GameLogic</Filter>
-    </ClInclude>
-    <ClInclude Include="SssMainBoss.h">
-      <Filter>GameLogic</Filter>
-    </ClInclude>
-    <ClInclude Include="SssResultWin.h">
-      <Filter>GameLogic</Filter>
-    </ClInclude>
-    <ClInclude Include="SssTitleObject.h">
-      <Filter>GameLogic</Filter>
-    </ClInclude>
-    <ClInclude Include="SssEffect.h">
-      <Filter>GameLogic</Filter>
-    </ClInclude>
-    <ClInclude Include="SceenList.h">
-      <Filter>GameLogic</Filter>
-    </ClInclude>
-    <ClInclude Include="SssSceeen.h">
-      <Filter>GameLogic</Filter>
-    </ClInclude>
-    <ClInclude Include="SssTitle.h">
-      <Filter>GameLogic</Filter>
-    </ClInclude>
     <ClInclude Include="SssSampler.h">
       <Filter>GameLogic</Filter>
     </ClInclude>
+    <ClInclude Include="SssPlayer.h">
+      <Filter>GameLogic\Object\Player</Filter>
+    </ClInclude>
     <ClInclude Include="SssFSM.h">
-      <Filter>GameLogic</Filter>
+      <Filter>GameLogic\FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="SssMainBoss.h">
+      <Filter>GameLogic\Object\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="SssSubBoss1.h">
+      <Filter>GameLogic\Object\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="SssSubBoss2.h">
+      <Filter>GameLogic\Object\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="SssEffect.h">
+      <Filter>GameLogic\Object\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="SceenList.h">
+      <Filter>GameLogic\Sceene</Filter>
+    </ClInclude>
+    <ClInclude Include="SssSceeen.h">
+      <Filter>GameLogic\Sceene</Filter>
+    </ClInclude>
+    <ClInclude Include="SssSceenManeger.h">
+      <Filter>GameLogic\Sceene</Filter>
+    </ClInclude>
+    <ClInclude Include="SssResultLose.h">
+      <Filter>GameLogic\Sceene</Filter>
+    </ClInclude>
+    <ClInclude Include="SssResultWin.h">
+      <Filter>GameLogic\Sceene</Filter>
+    </ClInclude>
+    <ClInclude Include="SssStage.h">
+      <Filter>GameLogic\Sceene</Filter>
+    </ClInclude>
+    <ClInclude Include="SssTitle.h">
+      <Filter>GameLogic\Sceene</Filter>
+    </ClInclude>
+    <ClInclude Include="SssTitleObject.h">
+      <Filter>GameLogic\Object\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="SssWall.h">
+      <Filter>GameLogic\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="SssBullet.h">
+      <Filter>GameLogic\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -222,6 +207,39 @@
     </Filter>
     <Filter Include="GameLogic">
       <UniqueIdentifier>{a3cc2ccc-4833-4299-af2e-701548ec0441}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameLogic\FSM">
+      <UniqueIdentifier>{163e06b0-8b5f-4fd1-b5d2-bb34ee3ff242}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameLogic\Object">
+      <UniqueIdentifier>{21a7bd04-49c3-4af9-a6bf-fbe4aaac1ca4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameLogic\Object\Player">
+      <UniqueIdentifier>{935725a9-394d-4044-8280-d48b7f351ec0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameLogic\Object\Player\Ground">
+      <UniqueIdentifier>{3aee71a9-f5e6-485c-baaa-6fb80cfa5161}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameLogic\Object\Player\Climb">
+      <UniqueIdentifier>{752cf2e3-ed36-4a59-bcf8-2af9ef5df286}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameLogic\Object\Player\Air">
+      <UniqueIdentifier>{fa49efa6-b3fb-4bd3-88e7-8dc702562d10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameLogic\Object\Player\Other">
+      <UniqueIdentifier>{82e815cf-b72f-4628-b806-eb37dbf35451}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameLogic\Object\Boss">
+      <UniqueIdentifier>{63ff432c-8159-47e5-a97b-3a2481350ed6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameLogic\Object\Effect">
+      <UniqueIdentifier>{dd041387-a8cb-47ef-b759-927fb97bb6be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameLogic\Sceene">
+      <UniqueIdentifier>{10867313-adbb-42f4-acdb-b023946c7f80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameLogic\Object\Title">
+      <UniqueIdentifier>{04407f4f-2258-495a-a009-fad5604e6a2e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

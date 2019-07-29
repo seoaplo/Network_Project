@@ -24,13 +24,13 @@ bool SPacketThread::Init()
 	if (ret == SOCKET_ERROR)
 	{
 		E_MSG("Server::bind");
-		return;
+		return false;
 	}
 	ret = listen(m_listensock, SOMAXCONN);
 	if (ret == SOCKET_ERROR)
 	{
 		E_MSG("Server::listen");
-		return;
+		return false;
 	}
 	unsigned long iMode = 1;
 	ioctlsocket(m_listensock, FIONBIO, &iMode);
@@ -38,7 +38,6 @@ bool SPacketThread::Init()
 	printf("\n서버 시작!!!\n");
 	//-------------------SELECT---------------------------
 	m_addlen = sizeof(SOCKADDR_IN);
-
 
 	m_hThread = CreateThread(0, 0, PacketThread, (LPVOID)this, 0, &m_iThreadID);
 	return true;
@@ -51,6 +50,7 @@ bool SPacketThread::Release()
 {
 	CloseHandle(PacketThread);
 	closesocket(m_listensock);
+	return true;
 }
 
 bool SPacketThread::PacketProcess()
@@ -60,10 +60,10 @@ bool SPacketThread::PacketProcess()
 	FD_SET(m_listensock, &m_rSet);
 	for (SUser& User : I_UserPool.GetUserPool())
 	{
-		if (User.bConnect)
+		if (User.GetConnect())
 		{
-			FD_SET(User.m_sock, &m_rSet);
-			FD_SET(User.m_sock, &m_wSet);
+			FD_SET(User.GetSocket(), &m_rSet);
+			FD_SET(User.GetSocket(), &m_wSet);
 		}
 	}
 
@@ -80,28 +80,51 @@ bool SPacketThread::PacketProcess()
 
 	if (FD_ISSET(m_listensock, &m_rSet))
 	{
-		SOCKET			UserSock;
+		SOCKET			UserSock = NULL;
 		SOCKADDR_IN		UserAddr;
-		UserSock = accept(UserSock, (SOCKADDR*)&UserAddr,
+		UserSock = accept(m_listensock, (SOCKADDR*)&UserAddr,
 			&m_addlen);
 		if (UserSock == INVALID_SOCKET)
 		{
 			E_MSG("Server::accept");
 		}
-		I_UserPool.PushUser(UserSock);
+		int UserNum;
+		UserNum = I_UserPool.PushUser(UserSock);
+		SUser& TargetUser = I_UserPool.GetUser(UserNum);
+		USER_NUM UserNumber;
+		UserNumber.iUserNum = UserNum;
+
+		PACKET pack;
+		pack.Header.type = PACKET_JOIN_USER_SC;
+		pack.Header.len = PACKET_HEADER_SIZE + sizeof(USER_NUM);
+		ZeroMemory(pack.msg, PACKET_MAX_DATA_SIZE);
+		memcpy(pack.msg, &UserNumber, sizeof(USER_NUM));
+
+		TargetUser.PushSendPacket(pack);
+
+		TargetUser.SetConnect();
+		TargetUser.SetSockAddr(UserAddr);
+		printf("\nConnect ip : %s, Number : %d", inet_ntoa(UserAddr.sin_addr), UserNumber);
 	}
 	for (SUser& User : I_UserPool.GetUserPool())
 	{
-		if (FD_ISSET(User.m_sock, &m_rSet))
+		if (User.GetConnect() == false) continue;
+
+		if (FD_ISSET(User.GetSocket(), &m_rSet))
 		{
-			if (User .Recv() == false)
+			if (User.Recv() == false)
 			{
-				User.bConnect = false;
+				User.SetConnect(false);
+				User.SetDisConnect();
 			}
 		}
-		if (FD_ISSET(User.m_sock, &m_wSet))
+		if (FD_ISSET(User.GetSocket(), &m_wSet))
 		{
-			User.Send();
+			if (User.Send() == false)
+			{
+				User.SetConnect(false);
+				User.SetDisConnect();
+			}
 		}
 	}
 
@@ -112,15 +135,15 @@ bool SPacketThread::PacketProcess()
 
 	for (SUser& User : I_UserPool.GetUserPool())
 	{
-		if (User.bConnect == false)
+		if (User.GetDisConnect() == true)
 		{
-			closesocket(User.m_sock);
-			printf("\n종료[%s][%d]=%d",
-				inet_ntoa(User.m_addr.sin_addr),
-				ntohs(User.m_addr.sin_port),
-				I_UserPool.GetUserPool().size());
-				DeleteArray[iMax] = User.m_iNum;
-				iMax++;
+			printf("\n종료 ip : %s, port : %d, num : %d",
+				inet_ntoa(User.GetSockAddr().sin_addr),
+				ntohs(User.GetSockAddr().sin_port),
+				User.GetNumber());
+
+			DeleteArray[iMax] = User.GetNumber();
+			iMax++;
 		}
 	}
 

@@ -18,7 +18,7 @@ public:
 		return MyBitMap;
 	}
 public:
-	bool Load(HINSTANCE TargetHinstance, HDC TargetHDC, TCHAR* RouteTString, UINT TargetIndex);
+	bool Load(HINSTANCE TargetHinstance, HDC TargetHDC, const TCHAR* RouteTString, UINT TargetIndex);
 	bool Draw(HDC TargetHDC, POINT TargetPos, RECT SizeRect, RECT ScaleRect, int iCopyOption);
 	bool Draw(HDC TargetHDC, POINT TargetPos, RECT SizeRect, POINT ScalePoint, int iCopyOption);
 	bool Draw(HDC TargetHDC, POINT TargetPos, RECT SizeRect, int iCopyOption);

@@ -1,5 +1,5 @@
 #pragma once
-#include "sssstd.h"
+#include "Game/sssstd.h"
 
 class SssFSM
 {

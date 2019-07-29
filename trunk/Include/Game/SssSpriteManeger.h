@@ -17,7 +17,7 @@ public:
 public:
 	int CreateSprite(const TCHAR* RectRouteString, const TCHAR* ImegeRouteString, const TCHAR* MaskRouteString, const TCHAR*  SpriteName, HDC TargetWindowDC, float PlayTime, int loopframe = 0);
 	int CreateSprite(const TCHAR* RectRouteString, const TCHAR* TransRouteString, const TCHAR*  SpriteName, COLORREF Color, HDC TargetWindowDC, float PlayTime, int loopframe = 0);
-	std::vector<LoadSpriteData>* LoadRectFile(TCHAR* RouteString);
+	std::vector<LoadSpriteData>* LoadRectFile(const TCHAR* RouteString);
 	SssSprite* GetSprite(int Key);
 	int GetKey(const TCHAR* SpriteName);
 	bool Release();

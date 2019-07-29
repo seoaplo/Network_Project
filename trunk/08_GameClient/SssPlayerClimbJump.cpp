@@ -7,7 +7,7 @@ bool SssPlayerClimbJump::Init(SssPlayer* Parent, HDC OffScreen, SssPoint* Pos, H
 	MyOffScreen = OffScreen;
 	MyRealPos = Pos;
 	MyCollider = TargetCollider;
-	iSoundIndex = SingleSoundManeger.Load("../Data/ClimbJump.wav");
+	iSoundIndex = SingleSoundManeger.Load("../../../data/ClimbJump.wav");
 	fSoundSize = 0;
 	fSoundMaxSize = ((SingleSoundManeger.GetSoundSize(iSoundIndex)) / 1000.0f) / 60.0f;
 	return true;

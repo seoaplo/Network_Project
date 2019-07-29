@@ -7,7 +7,7 @@ bool SssPlayerClimb::Init(SssPlayer* Parent, HDC OffScreen, SssPoint* Pos, HDC W
 	MyOffScreen = OffScreen;
 	MyRealPos = Pos;
 	MyCollider = TargetCollider;
-	iSoundIndex = SingleSoundManeger.Load("../Data/Climb.wav");
+	iSoundIndex = SingleSoundManeger.Load("../../../data/Climb.wav");
 	fSoundMaxSize = ((SingleSoundManeger.GetSoundSize(iSoundIndex)) / 1000.0f) / 60.0f;
 	fSoundSize = 0.0f;
 	COLORREF Color = RGB(29, 112, 189);

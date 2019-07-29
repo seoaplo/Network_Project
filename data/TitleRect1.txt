@@ -1,0 +1,14 @@
+4
+
+RectTitle1 1 0
+250 4719 189 57
+
+RectTitle2 1 0
+408 4545 126 97
+
+RectExit 1 0
+602 4659 32 7
+
+RectStartGame 1 0
+458 4664 87 7
+

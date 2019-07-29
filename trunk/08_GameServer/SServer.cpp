@@ -4,28 +4,10 @@ bool SServer::Init()
 {
 	
 	WSAStartup(MAKEWORD(2, 2), &m_wsa);
-	m_listensock = socket(AF_INET, SOCK_STREAM, 0);
-	SOCKADDR_IN addr;
-	ZeroMemory(&addr, sizeof(addr));
 
-	addr.sin_family = AF_INET;
-	addr.sin_port = htons(10000);
-	addr.sin_addr.s_addr = htonl(INADDR_ANY);
-
-	int ret = bind(m_listensock, (SOCKADDR*)&addr, sizeof(addr));
-	if (ret == SOCKET_ERROR)
-	{
-		E_MSG("bind");
-		return;
-	}
-
-	ret = listen(m_listensock, SOMAXCONN);
-	if (ret == SOCKET_ERROR)
-	{
-		E_MSG("listen");
-		return;
-	}
-	printf("Sever Staaaaaaaaaaaaaaaaaaaaaaaaaart!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+	I_UserPool.Init();
+	I_JoinPacketPool.Init();
+	I_GamePacketPool.Init();
 
 	m_PakcetThread.Init();
 	m_JoinThread.Init();
@@ -56,7 +38,7 @@ bool SServer::Run()
 
 	while (SuccessInit)
 	{
-		if (Frame()) break;
+		if (Frame() == false) break;
 	}
 
 	return Release();

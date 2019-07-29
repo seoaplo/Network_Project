@@ -8,7 +8,7 @@ bool SssPlayerDashBreak::Init(SssPlayer* Parent, HDC OffScreen, SssPoint* Pos, H
 	MyOffScreen = OffScreen;
 	MyRealPos = Pos;
 	MyCollider = TargetCollider;
-	iSoundIndex = SingleSoundManeger.Load("../Data/Break.wav");
+	iSoundIndex = SingleSoundManeger.Load("../../../data/Break.wav");
 	fSoundSize = 0;
 	fSoundMaxSize = ((SingleSoundManeger.GetSoundSize(iSoundIndex)) / 1000.0f) / 60.0f;
 	return true;

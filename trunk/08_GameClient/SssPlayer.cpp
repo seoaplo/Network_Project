@@ -29,8 +29,6 @@ bool SssPlayer::Init(HDC OffScreen, POINT TargetPos, HDC WindowDC)
 	COLORREF Color = RGB(29, 112, 189);
 
 	ObjectName = L"PlayerObject";
-	AttackerPoint = MyPos;
-	MyAttacker.Init(MyOffScreen, AttackerPoint, WindowDC);
 
 	CameraPos.x = 250;
 	CameraPos.y = 250;
@@ -109,7 +107,7 @@ bool SssPlayer::Init(HDC OffScreen, POINT TargetPos, HDC WindowDC)
 #pragma region State
 #pragma region IdleInit
 	SpriteNumber = SingleSpriteManeger.CreateSprite
-	(L"../Data/PlayerRect2.txt", L"../Data/Player2.bmp", L"RectIdle", Color, WindowDC, 1.5);
+	(L"../../../data/PlayerRect2.txt", L"../../../data/Player2.bmp", L"RectIdle", Color, WindowDC, 1.5);
 	SssPlayer* NewState = new SssPlayerIdle;
 	NewState->Init(this, MyScreen, MyRealPos, WindowDC, MyCollider);
 	NewState->SpriteImege = SingleSpriteManeger.GetSprite(SpriteNumber);
@@ -267,34 +265,34 @@ bool SssPlayer::Init(HDC OffScreen, POINT TargetPos, HDC WindowDC)
 	std::map<DWORD, SssPlayer*>::iterator SetControlState = MyStateList.find(Player_Start);
 	MyControlState = SetControlState->second;
 
-	iDashSound = SingleSoundManeger.Load("../Data/Dash.wav");
+	iDashSound = SingleSoundManeger.Load("../../../data/Dash.wav");
 	iDashSoundSize = 0;
 	iDashSoundMaxSize = ((SingleSoundManeger.GetSoundSize(iSoundIndex)) / 1000.0f) / 60.0f;
 
-	iDownEffectSound = SingleSoundManeger.Load("../Data/Down.wav");
+	iDownEffectSound = SingleSoundManeger.Load("../../../data/Down.wav");
 	fDownEffectSoundSize = 0;
 	fDownEffectSoundMaxSize = ((SingleSoundManeger.GetSoundSize(iDownEffectSound)) / 1000.0f) / 60.0f;
 
-	iJumpEffectSound = SingleSoundManeger.Load("../Data/Jump.wav");
-	iJumpEffectSound2 = SingleSoundManeger.Load("../Data/Jump2.wav");
+	iJumpEffectSound = SingleSoundManeger.Load("../../../data/Jump.wav");
+	iJumpEffectSound2 = SingleSoundManeger.Load("../../../data/Jump2.wav");
 	iJumpEffectSoundMaxSize = ((SingleSoundManeger.GetSoundSize(iJumpEffectSound)) / 1000.0f) / 60.0f;
 
 #pragma region Effect
 	ClimbEffectMaxTime = 0.3f;
 	ClimbEffectTime = 0.0f;
-	ClimbEffect.Init(OffScreen, MyPos, WindowDC, L"../Data/Player_Effect.bmp", L"RectEffectClimb", Color, L"../Data/PlayerEffect1.txt", NULL, ClimbEffectMaxTime);
+	ClimbEffect.Init(OffScreen, MyPos, WindowDC, L"../../../data/Player_Effect.bmp", L"RectEffectClimb", Color, L"../../../data/PlayerEffect1.txt", NULL, ClimbEffectMaxTime);
 
 	ClimbJumpEffectTime = 0.3f;
 	ClimbJumpEffectMaxTime = 0.0f;
-	ClimbJumpEffect.Init(OffScreen, MyPos, WindowDC, L"../Data/Player_Effect.bmp", L"RectEffectClimbJump", Color, L"../Data/PlayerEffect1.txt", "../Data/ClmibJump2.wav", ClimbEffectMaxTime);
+	ClimbJumpEffect.Init(OffScreen, MyPos, WindowDC, L"../../../data/Player_Effect.bmp", L"RectEffectClimbJump", Color, L"../../../data/PlayerEffect1.txt", "../../../data/ClmibJump2.wav", ClimbEffectMaxTime);
 
 
 	DashEffectTime = 0.3f;
 	DashEffectMaxTime = 0.0f;
-	DashEffect.Init(OffScreen, MyPos, WindowDC, L"../Data/Player_Effect.bmp", L"RectEffectDash2", Color, L"../Data/PlayerEffect1.txt", NULL, ClimbEffectMaxTime);
+	DashEffect.Init(OffScreen, MyPos, WindowDC, L"../../../data/Player_Effect.bmp", L"RectEffectDash2", Color, L"../../../data/PlayerEffect1.txt", NULL, ClimbEffectMaxTime);
 
 	int Key = SingleSpriteManeger.CreateSprite
-	(L"../Data/PlayerEffect1.txt", L"../Data/Player_Effect.bmp", L"RectEffectDash1", Color, WindowDC, 1.5);
+	(L"../../../data/PlayerEffect1.txt", L"../../../data/Player_Effect.bmp", L"RectEffectDash1", Color, WindowDC, 1.5);
 	DashEffectSprite = SingleSpriteManeger.GetSprite(Key);
 	DashEffectSprite->SetDrawTime(0.3f);
 #pragma endregion
@@ -643,54 +641,7 @@ bool SssPlayer::Frame()
 
 	MyCollider->SetPoint(MyPos);
 
-	AttackerPoint.y = MyPos.y - 80;
 
-	if (bStopLeft || bStopRight)
-	{
-		if (bStopLeft)
-		{
-			AttackerPoint.x = MyPos.x + 30;
-		}
-		else
-		{
-			AttackerPoint.x = MyPos.x - 30;
-		}
-	}
-	else if(bClimbJumpleft || bClimbJumpRight)
-	{
-		if (bClimbJumpleft)
-		{
-			AttackerPoint.x = MyPos.x + 30;
-		}
-		else
-		{
-			AttackerPoint.x = MyPos.x - 30;
-		}
-	}
-	else
-	{
-		if (CheckArrowkey == 'D')
-		{
-			AttackerPoint.x = MyPos.x + 30;
-		}
-		else if (CheckArrowkey == 'A')
-		{
-			AttackerPoint.x = MyPos.x - 30;
-		}
-		else if (BeforeArrowkey == 'D')
-		{
-			AttackerPoint.x = MyPos.x + 30;
-		}
-		else
-		{
-			AttackerPoint.x = MyPos.x - 30;
-		}
-	}
-	MyAttacker.SetPosition(AttackerPoint);
-	if (MyState != Player_Death && MyState != Player_Start && MyState != Player_Victory)
-	{
-		MyAttacker.Frame();
-	}
 
 	BeforeArrowkey = CheckArrowkey != 0 ? CheckArrowkey : BeforeArrowkey;
 	MybeforeState = MyState;
@@ -739,10 +690,6 @@ bool SssPlayer::Render()
 			DashEffectSprite->Draw(MyOffScreen, EffectPoint, 2, IDO_WidthMirror);
 		}
 	}
-	if (MyState != Player_Death && MyState != Player_Start && MyState != Player_Victory)
-	{
-		MyAttacker.Render();
-	}
 	
 	if (BeforeArrowkey != CheckArrowkey || MyState != Player_Dash)
 	{
@@ -768,7 +715,6 @@ bool SssPlayer::Release()
 		Itor++;
 	}
 	MyStateList.clear();
-	MyAttacker.Release();
 	CollisionManeger.DeleteColider(MyCollider);
 	DeleteObject(SelectObject(MyScreen, MyOldBitMap));
 	DeleteDC(MyScreen);

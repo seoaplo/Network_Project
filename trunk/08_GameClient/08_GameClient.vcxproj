@@ -42,7 +42,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -120,7 +120,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="SceenList.h" />
-    <ClInclude Include="SssAttacker.h" />
+    <ClInclude Include="SPacketThread.h" />
+    <ClInclude Include="SRecvPacketPool.h" />
+    <ClInclude Include="SSendPacketPool.h" />
+    <ClInclude Include="SClient.h" />
     <ClInclude Include="SssBullet.h" />
     <ClInclude Include="SssEffect.h" />
     <ClInclude Include="SssFSM.h" />
@@ -139,7 +142,10 @@
     <ClInclude Include="SssWall.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="SssAttacker.cpp" />
+    <ClCompile Include="SPacketThread.cpp" />
+    <ClCompile Include="SRecvPacketPool.cpp" />
+    <ClCompile Include="SSendPacketPool.cpp" />
+    <ClCompile Include="SClient.cpp" />
     <ClCompile Include="SssBullet.cpp" />
     <ClCompile Include="SssEffect.cpp" />
     <ClCompile Include="SssFSM.cpp" />

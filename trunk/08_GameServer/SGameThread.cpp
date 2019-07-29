@@ -21,6 +21,7 @@ bool SGameThread::Frame()
 bool SGameThread::Release()
 {
 	CloseHandle(m_hThread);
+	return true;
 }
 
 SGameThread::SGameThread()

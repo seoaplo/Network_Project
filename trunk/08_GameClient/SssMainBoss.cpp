@@ -63,7 +63,7 @@ bool SssMainBoss::Init(HDC OffScreen, POINT TargetPos, HDC WindowDC)
 	DamegeMaxTime = 0.1f;
 
 	int SpriteNumber = SingleSpriteManeger.CreateSprite
-	(L"../Data/BossRect.txt", L"../Data/MainBoss.bmp", L"BossIdle", MyColor, WindowDC, MyidleMaxTime);
+	(L"../../../data/BossRect.txt", L"../../../data/MainBoss.bmp", L"BossIdle", MyColor, WindowDC, MyidleMaxTime);
 	MySprite = SingleSpriteManeger.GetSprite(SpriteNumber);
 	MyStateList.insert(std::make_pair(Boss_Idle, MySprite));
 	MySprite->Init();

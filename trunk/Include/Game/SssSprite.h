@@ -16,8 +16,8 @@ public:
 	int loopIndex;
 	int DrawIndex;
 public:
-	bool CreateSprite(std::vector<RECT>& TargetRectList, TCHAR* SpriteName, TCHAR* BasicRouteString, TCHAR* MaskRouteString, HDC TargetWindowDC, float PlayTime, int loopframe = 0);
-	bool CreateSprite(std::vector<RECT>& TargetRectList, TCHAR* SpriteName,TCHAR* BasicRouteString, HDC TargetWindowDC, COLORREF TargetColor, float PlayTime, int loopframe = 0);
+	bool CreateSprite(std::vector<RECT>& TargetRectList, const TCHAR* SpriteName, const TCHAR* BasicRouteString, const TCHAR* MaskRouteString, HDC TargetWindowDC, float PlayTime, int loopframe = 0);
+	bool CreateSprite(std::vector<RECT>& TargetRectList, const TCHAR* SpriteName, const TCHAR* BasicRouteString, HDC TargetWindowDC, COLORREF TargetColor, float PlayTime, int loopframe = 0);
 	bool Draw(HDC TargetHDC, POINT TargetPos, float fScale, int DrawOption = 0);
 	bool RotateDraw(HDC TargetHDC, POINT TargetPos, float fRotate, float fScaleX, float fScaleY);
 	void SetDrawTime(float TargetTime)

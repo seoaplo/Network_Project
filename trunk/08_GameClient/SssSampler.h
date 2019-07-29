@@ -1,5 +1,6 @@
 #pragma once
-#include "SssCore.h"
+#include "SClient.h"
+#include "Game/SssCore.h"
 #include "SssSceenManeger.h"
 
 class SssSampler : public SssCore

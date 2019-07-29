@@ -29,8 +29,6 @@ bool SssPlayer::Init(HDC OffScreen, POINT TargetPos, HDC WindowDC)
 	COLORREF Color = RGB(29, 112, 189);
 
 	ObjectName = L"PlayerObject";
-	AttackerPoint = MyPos;
-	MyAttacker.Init(MyOffScreen, AttackerPoint, WindowDC);
 
 	CameraPos.x = 250;
 	CameraPos.y = 250;
@@ -643,54 +641,7 @@ bool SssPlayer::Frame()
 
 	MyCollider->SetPoint(MyPos);
 
-	AttackerPoint.y = MyPos.y - 80;
 
-	if (bStopLeft || bStopRight)
-	{
-		if (bStopLeft)
-		{
-			AttackerPoint.x = MyPos.x + 30;
-		}
-		else
-		{
-			AttackerPoint.x = MyPos.x - 30;
-		}
-	}
-	else if(bClimbJumpleft || bClimbJumpRight)
-	{
-		if (bClimbJumpleft)
-		{
-			AttackerPoint.x = MyPos.x + 30;
-		}
-		else
-		{
-			AttackerPoint.x = MyPos.x - 30;
-		}
-	}
-	else
-	{
-		if (CheckArrowkey == 'D')
-		{
-			AttackerPoint.x = MyPos.x + 30;
-		}
-		else if (CheckArrowkey == 'A')
-		{
-			AttackerPoint.x = MyPos.x - 30;
-		}
-		else if (BeforeArrowkey == 'D')
-		{
-			AttackerPoint.x = MyPos.x + 30;
-		}
-		else
-		{
-			AttackerPoint.x = MyPos.x - 30;
-		}
-	}
-	MyAttacker.SetPosition(AttackerPoint);
-	if (MyState != Player_Death && MyState != Player_Start && MyState != Player_Victory)
-	{
-		MyAttacker.Frame();
-	}
 
 	BeforeArrowkey = CheckArrowkey != 0 ? CheckArrowkey : BeforeArrowkey;
 	MybeforeState = MyState;
@@ -739,10 +690,6 @@ bool SssPlayer::Render()
 			DashEffectSprite->Draw(MyOffScreen, EffectPoint, 2, IDO_WidthMirror);
 		}
 	}
-	if (MyState != Player_Death && MyState != Player_Start && MyState != Player_Victory)
-	{
-		MyAttacker.Render();
-	}
 	
 	if (BeforeArrowkey != CheckArrowkey || MyState != Player_Dash)
 	{
@@ -768,7 +715,6 @@ bool SssPlayer::Release()
 		Itor++;
 	}
 	MyStateList.clear();
-	MyAttacker.Release();
 	CollisionManeger.DeleteColider(MyCollider);
 	DeleteObject(SelectObject(MyScreen, MyOldBitMap));
 	DeleteDC(MyScreen);

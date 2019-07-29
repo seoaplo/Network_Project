@@ -3,5 +3,7 @@
 
 int main()
 {
-	
+	SServer Server;
+
+	return Server.Run();
 }

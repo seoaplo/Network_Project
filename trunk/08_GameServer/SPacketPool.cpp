@@ -23,10 +23,11 @@ bool SPacketPool::Init()
 bool SPacketPool::Release()
 {
 	SScopeRock_Mutex ScopeLock(Mutex);
-	while (m_PacketPool.empty)
+	while (m_PacketPool.empty())
 	{
 		m_PacketPool.pop();
 	}
+	return true;
 }
 
 SPacketPool::SPacketPool()

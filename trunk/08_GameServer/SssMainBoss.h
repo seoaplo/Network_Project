@@ -1,5 +1,5 @@
 #pragma once
-#include "SssObject.h"
+#include "Game/SssObject.h"
 #include "SssBullet.h"
 #include "SssFSM.h"
 #include <time.h>

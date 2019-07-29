@@ -18,7 +18,7 @@ public:
 	bool Release();
 public:
 	bool PacketProcess();
-	bool BroadCast();
+	bool BroadCast() ;
 	bool TargetSend();
 public:
 	SPacketThread();

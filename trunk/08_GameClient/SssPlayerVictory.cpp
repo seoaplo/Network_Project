@@ -11,7 +11,7 @@ bool SssPlayerVictory::Init(SssPlayer* Parent, HDC OffScreen, SssPoint* Pos, HDC
 	fTeleportMotionTime = 0.0f;
 	fTeleportMotionMaxTime = 0.3f;
 	Teleport->SetDrawTime(fTeleportMotionMaxTime);
-	iSoundIndex = SingleSoundManeger.Load("../Data/VictoryTelePort.wav");
+	iSoundIndex = SingleSoundManeger.Load("../../../data/VictoryTelePort.wav");
 	fSoundSize = 0;
 	fSoundMaxSize = ((SingleSoundManeger.GetSoundSize(iSoundIndex)) / 1000.0f) / 60.0f;
 	return true;

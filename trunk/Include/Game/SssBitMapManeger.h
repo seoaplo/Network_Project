@@ -15,7 +15,7 @@ public:
 		return SingleBitmapManeger;
 	}
 public:
-	UINT Load(TCHAR* RouteString);
+	UINT Load(const TCHAR* RouteString);
 	bool CreateManeger(HDC TargetHDC, HINSTANCE TargetHinstance);
 	SssBitMap* GetBitMap(UINT iKey);
 public:

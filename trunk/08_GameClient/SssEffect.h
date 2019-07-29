@@ -1,5 +1,5 @@
 #pragma once
-#include "Ssslibheader.h"
+#include "Game/Ssslibheader.h"
 
 class SssEffect : public SssObject
 {
@@ -16,8 +16,8 @@ public:
 	};
 	std::list<DrawData*> DrawList;
 public:
-	bool Init(HDC OffScreen, POINT TargetPos, HDC WindowDC, TCHAR* RouteString, TCHAR* RectString,
-		COLORREF COLOR, TCHAR* RectRouteString, char* SoundString, float LifeSecond);
+	bool Init(HDC OffScreen, POINT TargetPos, HDC WindowDC, const TCHAR* RouteString, const TCHAR* RectString,
+		COLORREF COLOR, const TCHAR* RectRouteString, const char* SoundString, float LifeSecond);
 	bool Frame();
 	bool Render();
 	bool Release();

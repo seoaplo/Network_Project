@@ -21,6 +21,8 @@ public:
 	float VictoryMaxTime;
 	float LoseTime;
 	float LoseMaxTime;
+
+
 public:
 	virtual bool Init(HDC WindowDC, HDC OffScreen);
 	virtual bool Frame();

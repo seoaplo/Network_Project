@@ -1,5 +1,5 @@
 #pragma once
-#include "Ssslibheader.h"
+#include "Game/Ssslibheader.h"
 class SssTitleObject : public SssObject
 {
 public:
@@ -11,10 +11,10 @@ public:
 	RECT MyRect;
 	bool bChangeSceen;
 public:
-	virtual bool Init(HDC OffScreen, POINT TargetPos, HDC WindowDC, char* SoundStirng, RECT TargetRect,
-		TCHAR* RouteString, TCHAR* RectString, TCHAR* RectRouteString, COLORREF TargetColor, bool Check, float fScale);
-	virtual bool Init(HDC OffScreen, POINT TargetPos, HDC WindowDC, char* SoundStirng, RECT TargetRect,
-		TCHAR* RouteString, TCHAR* RectString, TCHAR* RectRouteString, TCHAR* MaskRouteString, bool Check, float fScale);
+	virtual bool Init(HDC OffScreen, POINT TargetPos, HDC WindowDC, const char* SoundStirng, RECT TargetRect,
+		const TCHAR* RouteString, const TCHAR* RectString, const TCHAR* RectRouteString, COLORREF TargetColor, bool Check, float fScale);
+	virtual bool Init(HDC OffScreen, POINT TargetPos, HDC WindowDC, const char* SoundStirng, RECT TargetRect,
+		const TCHAR* RouteString, const TCHAR* RectString, const TCHAR* RectRouteString, const TCHAR* MaskRouteString, bool Check, float fScale);
 	virtual bool Frame();
 	virtual bool Render();
 	virtual bool Release();
@@ -37,10 +37,10 @@ public:
 	float MyfScale;
 	RECT MyRect;
 public:
-	bool Init(HDC OffScreen, POINT TargetPos, HDC WindowDC, char* SoundStirng, RECT TargetRect,
-		TCHAR* RouteString, TCHAR* RectString, TCHAR* RectRouteString, COLORREF TargetColor, bool Check, float fScale);
-	bool Init(HDC OffScreen, POINT TargetPos, HDC WindowDC, char* SoundStirng, RECT TargetRect,
-		TCHAR* RouteString, TCHAR* RectString, TCHAR* RectRouteString, TCHAR* MaskRouteString, bool Check, float fScale);
+	bool Init(HDC OffScreen, POINT TargetPos, HDC WindowDC, const char* SoundStirng, RECT TargetRect,
+		const TCHAR* RouteString, const TCHAR* RectString, const TCHAR* RectRouteString, COLORREF TargetColor, bool Check, float fScale);
+	bool Init(HDC OffScreen, POINT TargetPos, HDC WindowDC, const char* SoundStirng, RECT TargetRect,
+		const TCHAR* RouteString, const TCHAR* RectString, const TCHAR* RectRouteString, const TCHAR* MaskRouteString, bool Check, float fScale);
 	bool Frame();
 	bool Render();
 	bool Release();
@@ -59,10 +59,10 @@ public:
 	float MyfScale;
 	RECT MyRect;
 public:
-	bool Init(HDC OffScreen, POINT TargetPos, HDC WindowDC, char* SoundStirng, RECT TargetRect,
-		TCHAR* RouteString, TCHAR* RectString, TCHAR* RectRouteString, COLORREF TargetColor, bool Check, float fScale);
-	bool Init(HDC OffScreen, POINT TargetPos, HDC WindowDC, char* SoundStirng, RECT TargetRect,
-		TCHAR* RouteString, TCHAR* RectString, TCHAR* RectRouteString, TCHAR* MaskRouteString, bool Check, float fScale);
+	bool Init(HDC OffScreen, POINT TargetPos, HDC WindowDC, const char* SoundStirng, RECT TargetRect,
+		const TCHAR* RouteString, const TCHAR* RectString, const TCHAR* RectRouteString, COLORREF TargetColor, bool Check, float fScale);
+	bool Init(HDC OffScreen, POINT TargetPos, HDC WindowDC, const char* SoundStirng, RECT TargetRect,
+		const TCHAR* RouteString, const TCHAR* RectString, const TCHAR* RectRouteString, const TCHAR* MaskRouteString, bool Check, float fScale);
 	bool Frame();
 	bool Render();
 	bool Release();

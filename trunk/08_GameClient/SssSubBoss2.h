@@ -1,5 +1,5 @@
 #pragma once
-#include "Ssslibheader.h"
+#include "Game/Ssslibheader.h"
 
 class SssSubBoss2 : public SssObject
 {

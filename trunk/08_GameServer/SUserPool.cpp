@@ -3,10 +3,11 @@
 
 bool SUserPool::Init()
 {
+
 	SScopeRock_Mutex ScopeLock(Mutex);
 	Release();
 	m_UserPool.resize(USER_MAXSIZE);
-	for (auto User : m_UserPool)
+	for (auto& User : m_UserPool)
 	{
 		User.Init();
 	}
@@ -32,16 +33,18 @@ int SUserPool::PushUser(SOCKET sock)
 {
 	SScopeRock_Mutex ScopeLock(Mutex);
 
-	if(m_iUserMax <= USER_MAXSIZE) return -1;
+	if(m_iUserMax >= USER_MAXSIZE) return -1;
 
 	m_iUserMax++;
 	int iCount = 0;
-	for (auto User : m_UserPool)
+	for (auto& User : m_UserPool)
 	{
-		if(User.m_bReady == false ) break;
+		if(User.GetConnect() == false ) break;
 		iCount++;
 	}
-	m_UserPool[iCount].m_sock = sock;
+	m_UserPool[iCount].Init();
+	m_UserPool[iCount].SetSocket(sock);
+	m_UserPool[iCount].SetNumber(iCount);
 	return iCount;
 }
 bool SUserPool::DeleteUser(int iUserNum)

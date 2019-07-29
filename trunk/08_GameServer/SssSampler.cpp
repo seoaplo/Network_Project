@@ -1,12 +1,9 @@
 #include "SssSampler.h"
 
 
-SSSWINDOW(RockmanX_NoBuster)
-
 #pragma region Begin
 bool SssSampler::BeginInit()
 {
-	_CrtSetBreakAlloc(11849);
 	return true;
 }
 bool SssSampler::BeginFrame()

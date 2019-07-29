@@ -14,7 +14,7 @@ bool SssResultLose::Init(HDC WindowDC, HDC OffScreen)
 	rect.right = 238 + 174;
 	rect.bottom = 95 + 289;
 
-	UINT Key = SingleImegeManeger.CreateImege(rect, L"../Data/Warnning.bmp", WindowDC);
+	UINT Key = SingleImegeManeger.CreateImege(rect, L"../../../data/Warnning.bmp", WindowDC);
 	MyBackGroundImege = SingleImegeManeger.GetImege(Key);
 
 	MaxTime = 10.0f;

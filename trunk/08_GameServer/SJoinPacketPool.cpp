@@ -24,10 +24,11 @@ bool SJoinPacketPool::Init()
 bool SJoinPacketPool::Release()
 {
 	SScopeRock_Mutex ScopeLock(Mutex);
-	while (m_PacketPool.empty)
+	while (m_PacketPool.empty())
 	{
 		m_PacketPool.pop();
 	}
+	return true;
 }
 
 

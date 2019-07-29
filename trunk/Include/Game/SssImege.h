@@ -22,7 +22,7 @@ private:
 	float MyLength;
 
 public:
-	bool Create(RECT SizeRect, TCHAR* BitMapRouteString, HDC MyWindowDC);
+	bool Create(RECT SizeRect, const TCHAR* BitMapRouteString, HDC MyWindowDC);
 	bool Draw(HDC TargetHDC, POINT TargetPos, float fScale, int iCopyOption, int DrawOption = 0);
 	bool RotateDraw(HDC TargetHDC, POINT TargetPos, float fRotate, int iCopyOption, float fScaleX, float fScaleY);
 	bool TransDraw(HDC TargetHDC, POINT TargetPos, float fScale, COLORREF TargetColor, int iDrawOption = 0);
