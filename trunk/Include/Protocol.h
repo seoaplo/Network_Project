@@ -18,12 +18,16 @@
 	#define PACKET_CHAR_MSG			 0x1000 // DATA
 	#define PACKET_CHAR_NAME_SC_REQ  0x1001 // DATA
 	#define PACKET_CHAR_NAME_CS_ACK  0x1002 // DATA
-	#define PACKET_JOIN_SIGNIN_SC	 0x1003 // x
-	#define PACKET_JOIN_USER_SC		 0x1004 // DATA
+	#define PACKET_JOIN_SIGNIN_CS	 0x1003 // x
+	#define PACKET_JOIN_USER_SC		 0x1004 // x
 	#define PACKET_DRUP_CS_REQ		 0x1005 // x
 	#define PACKET_DRUP_SC_ACK		 0x1006 // x
 	#define PACKET_DRUP_USERS_SC	 0x1007 // DATA
 
+	typedef struct 
+	{
+		int iUserNum;
+	}USER_NUM;
 	typedef struct {
 		int   iIndex;
 		char  szName[20];		

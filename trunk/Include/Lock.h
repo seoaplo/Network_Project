@@ -34,20 +34,6 @@ public:
 	}
 };
 
-class SScopeRock_CS
-{
-	CRITICAL_SECTION& m_cs;
-public:
-	explicit SScopeRock_CS(CRITICAL_SECTION& Input) : m_cs(Input)
-	{
-		EnterCriticalSection(&m_cs);
-	}
-	~SScopeRock_CS()
-	{
-		LeaveCriticalSection(&m_cs);
-	}
-};
-
 class SScopeRock_Mutex
 {
 	SmartMutex& m_Mutex;

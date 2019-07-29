@@ -12,7 +12,7 @@ public:
 	std::map<std::string, int> SoundList;
 	int MySoundSize;
 public:
-	int			Load(char* RouteString);
+	int			Load(const char* RouteString);
 	void		Play(int iIndex, int SetMode);
 	void		PlayEffect(int iIndex);
 	void		Stop(int iIndex);

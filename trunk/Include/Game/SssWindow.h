@@ -8,8 +8,8 @@ public:
 	RECT		MyClientRect;
 	RECT		MyWindowRect;
 public:
-				bool			SetWindow(HINSTANCE hInstance, TCHAR* lpszSetName);
-				bool			InitWindow(TCHAR* lpszSetName, int nCmdLine);
+				bool			SetWindow(HINSTANCE hInstance, const TCHAR* lpszSetName);
+				bool			InitWindow(const TCHAR* lpszSetName, int nCmdLine);
 virtual			bool			Run();
 virtual			LRESULT			WindowProc(HWND hWindow, UINT Messege, WPARAM wParam, LPARAM lParam);
 

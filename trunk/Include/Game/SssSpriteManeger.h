@@ -15,11 +15,11 @@ public:
 	std::map<int, SssSprite*> MySpriteList;
 	int iSize;
 public:
-	int CreateSprite(TCHAR* RectRouteString, TCHAR* ImegeRouteString, TCHAR* MaskRouteString, TCHAR*  SpriteName, HDC TargetWindowDC, float PlayTime, int loopframe = 0);
-	int CreateSprite(TCHAR* RectRouteString,  TCHAR* TransRouteString, TCHAR*  SpriteName, COLORREF Color, HDC TargetWindowDC, float PlayTime, int loopframe = 0);
+	int CreateSprite(const TCHAR* RectRouteString, const TCHAR* ImegeRouteString, const TCHAR* MaskRouteString, const TCHAR*  SpriteName, HDC TargetWindowDC, float PlayTime, int loopframe = 0);
+	int CreateSprite(const TCHAR* RectRouteString, const TCHAR* TransRouteString, const TCHAR*  SpriteName, COLORREF Color, HDC TargetWindowDC, float PlayTime, int loopframe = 0);
 	std::vector<LoadSpriteData>* LoadRectFile(TCHAR* RouteString);
 	SssSprite* GetSprite(int Key);
-	int GetKey(TCHAR* SpriteName);
+	int GetKey(const TCHAR* SpriteName);
 	bool Release();
 	static SssSpriteManeger& GetInstance()
 	{

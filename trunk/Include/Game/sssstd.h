@@ -7,9 +7,13 @@
 #include <list>
 #include <iostream>
 #include <fstream>
-#include "fmod.hpp"
+#include "Client/fmod/fmod.hpp"
 
-#pragma comment(lib, "./fmodlib/fmod_vc.lib")
+#ifdef _WIN64
+#pragma comment(lib, "fmod64_vc.lib")
+#else
+#pragma comment(lib, "fmod_vc.lib")
+#endif // _WIN64
 
 #pragma comment (lib, "msimg32.lib")
 #pragma comment(lib, "winmm.lib")

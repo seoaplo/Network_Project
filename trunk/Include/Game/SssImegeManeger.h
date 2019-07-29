@@ -14,7 +14,7 @@ private:
 	std::map<UINT, SssImege*> ObjectList;
 	UINT iSize;
 public:
-	UINT CreateImege(RECT ObjectSize, TCHAR* RouteTString, HDC MyWindowDC);
+	UINT CreateImege(RECT ObjectSize, const TCHAR* RouteTString, HDC MyWindowDC);
 	SssImege* GetImege(UINT& iKey);
 	bool Release();
 	static SssImegeManeger& GetInstance()

@@ -12,7 +12,7 @@
 #define PACK_END  3000
 #define MAX_STREAM_SIZE 4096*5
 
-void E_MSG(const char* pMsg)
+static void E_MSG(const char* pMsg)
 {
 	void* lpMsgBuf;
 	FormatMessageA(
