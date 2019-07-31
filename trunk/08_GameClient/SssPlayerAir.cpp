@@ -13,14 +13,7 @@ bool SssPlayerAir::Init(SssPlayer* Parent, HDC OffScreen, SssPoint* Pos, HDC Win
 bool SssPlayerAir::Frame()
 {
 	float Speed;
-	if (pParent->DashPower)
-	{
-		Speed = pParent->iDashSpeed;
-	}
-	else
-	{
-		Speed = pParent->iSpeed;
-	}
+	Speed = pParent->iSpeed;
 	if (pParent->fJumpPower > 1.0f)
 	{
 		pParent->fJumpPower -= pParent->fJumpPower;

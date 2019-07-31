@@ -10,6 +10,8 @@ protected:
 	HDC			MyOutPutDC;
 	bool		bDebug;
 public:
+	static SssCore* g_pCore;
+public:
 	virtual bool Init();
 	virtual bool Frame();
 	virtual bool Renderer();
@@ -31,13 +33,18 @@ public:
 			bool CoreRenderer();
 			bool CoreRelease();
 			bool Run();
-
 public:
-	
+	LRESULT(*WindowProcFunc) (HWND hWindow, UINT Messege, WPARAM wParam, LPARAM lParam);
+public:
+	virtual	LRESULT	WindowProc(HWND hWindow, UINT Messege, WPARAM wParam, LPARAM lParam)
+	{
+		if (WindowProcFunc != nullptr)
+		{
+			WindowProcFunc(hWindow, Messege, wParam, lParam);
+		}
+		return DefWindowProc(hWindow, Messege, wParam, lParam);
+	}
 public:
 	SssCore();
 	virtual ~SssCore();
 };
-
-
-

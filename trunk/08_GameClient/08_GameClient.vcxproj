@@ -119,6 +119,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="resource.h" />
     <ClInclude Include="SceenList.h" />
     <ClInclude Include="SPacketThread.h" />
     <ClInclude Include="SRecvPacketPool.h" />
@@ -152,11 +153,7 @@
     <ClCompile Include="SssMainBoss.cpp" />
     <ClCompile Include="SssPlayer.cpp" />
     <ClCompile Include="SssPlayerAir.cpp" />
-    <ClCompile Include="SssPlayerClimb.cpp" />
-    <ClCompile Include="SssPlayerClimbJump.cpp" />
     <ClCompile Include="SssPlayerDamege.cpp" />
-    <ClCompile Include="SssPlayerDash.cpp" />
-    <ClCompile Include="SssPlayerDashBreak.cpp" />
     <ClCompile Include="SssPlayerDeath.cpp" />
     <ClCompile Include="SssPlayerDown.cpp" />
     <ClCompile Include="SssPlayerIdle.cpp" />
@@ -175,6 +172,9 @@
     <ClCompile Include="SssTitle.cpp" />
     <ClCompile Include="SssTitleObject.cpp" />
     <ClCompile Include="SssWall.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

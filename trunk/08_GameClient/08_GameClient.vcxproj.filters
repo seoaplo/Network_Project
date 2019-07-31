@@ -64,6 +64,7 @@
     <ClInclude Include="SClient.h">
       <Filter>Server</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SssSampler.cpp">
@@ -102,19 +103,7 @@
     <ClCompile Include="SssPlayerAir.cpp">
       <Filter>GameLogic\Object\Player</Filter>
     </ClCompile>
-    <ClCompile Include="SssPlayerClimb.cpp">
-      <Filter>GameLogic\Object\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="SssPlayerClimbJump.cpp">
-      <Filter>GameLogic\Object\Player</Filter>
-    </ClCompile>
     <ClCompile Include="SssPlayerDamege.cpp">
-      <Filter>GameLogic\Object\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="SssPlayerDash.cpp">
-      <Filter>GameLogic\Object\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="SssPlayerDashBreak.cpp">
       <Filter>GameLogic\Object\Player</Filter>
     </ClCompile>
     <ClCompile Include="SssPlayerDeath.cpp">
@@ -197,5 +186,11 @@
     <Filter Include="Server\Pool">
       <UniqueIdentifier>{368e634a-1592-46d4-bbe9-8ce4b0e09bd6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="resource">
+      <UniqueIdentifier>{dfd50784-a9bf-4a41-81ca-75c2f06f29f6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc" />
   </ItemGroup>
 </Project>

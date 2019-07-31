@@ -1,4 +1,6 @@
+e:\winapi\sssgame\00_ssslibrary\../../output/release/x64/ssslibrary/vcpkg.applocal.log
 e:\winapi\output\release\x64\ssslibrary\00_ssslibrary.pdb
+e:\winapi\output\release\x64\ssslibrary\ssswindow.obj
 e:\winapi\output\release\x64\ssslibrary\ssstimer.obj
 e:\winapi\output\release\x64\ssslibrary\sssspritemaneger.obj
 e:\winapi\output\release\x64\ssslibrary\ssssprite.obj
@@ -12,6 +14,12 @@ e:\winapi\output\release\x64\ssslibrary\ssscollisionmaneger.obj
 e:\winapi\output\release\x64\ssslibrary\ssscollider.obj
 e:\winapi\output\release\x64\ssslibrary\sssbitmapmaneger.obj
 e:\winapi\output\release\x64\ssslibrary\sssbitmap.obj
+e:\winapi\output\release\x64\00_ssslibrary.lib
+e:\winapi\sssgame\00_ssslibrary\../../output/release/x64/00_ssslibrary.lib
+e:\winapi\output\release\x64\ssslibrary\00_ssslibrary.tlog\00_ssslibrary.write.1u.tlog
 e:\winapi\output\release\x64\ssslibrary\00_ssslibrary.tlog\cl.command.1.tlog
 e:\winapi\output\release\x64\ssslibrary\00_ssslibrary.tlog\cl.read.1.tlog
 e:\winapi\output\release\x64\ssslibrary\00_ssslibrary.tlog\cl.write.1.tlog
+e:\winapi\output\release\x64\ssslibrary\00_ssslibrary.tlog\lib-link.read.1.tlog
+e:\winapi\output\release\x64\ssslibrary\00_ssslibrary.tlog\lib-link.write.1.tlog
+e:\winapi\output\release\x64\ssslibrary\00_ssslibrary.tlog\lib.command.1.tlog

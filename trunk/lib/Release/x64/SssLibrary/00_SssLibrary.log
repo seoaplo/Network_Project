@@ -1,9 +1,53 @@
-﻿  SssCollisionManeger.cpp
+﻿  SssBitMap.cpp
+  SssBitMapManeger.cpp
+  SssCollider.cpp
+  SssCollisionManeger.cpp
   SssCore.cpp
-e:\winapi\sssgame\00_ssslibrary\ssscore.cpp(112): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\winapi\sssgame\00_ssslibrary\ssscore.cpp(113): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  SssImege.cpp
+e:\winapi\sssgame\00_ssslibrary\sssimege.cpp(37): warning C4244: '-=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\winapi\sssgame\00_ssslibrary\sssimege.cpp(38): warning C4244: '-=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\winapi\sssgame\00_ssslibrary\sssimege.cpp(85): warning C4244: '+=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\winapi\sssgame\00_ssslibrary\sssimege.cpp(98): warning C4244: '+=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\winapi\sssgame\00_ssslibrary\sssimege.cpp(112): warning C4244: '+=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\winapi\sssgame\00_ssslibrary\sssimege.cpp(113): warning C4244: '+=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\winapi\sssgame\00_ssslibrary\sssimege.cpp(183): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\winapi\sssgame\00_ssslibrary\sssimege.cpp(189): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\winapi\sssgame\00_ssslibrary\sssimege.cpp(213): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\winapi\sssgame\00_ssslibrary\sssimege.cpp(218): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\winapi\sssgame\00_ssslibrary\sssimege.cpp(231): warning C4244: '-=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\winapi\sssgame\00_ssslibrary\sssimege.cpp(232): warning C4244: '-=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\winapi\sssgame\00_ssslibrary\sssimege.cpp(239): warning C4244: '-=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\winapi\sssgame\00_ssslibrary\sssimege.cpp(253): warning C4244: '-=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\winapi\sssgame\00_ssslibrary\sssimege.cpp(265): warning C4244: '-=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\winapi\sssgame\00_ssslibrary\sssimege.cpp(266): warning C4244: '-=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\winapi\sssgame\00_ssslibrary\sssimege.cpp(283): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\winapi\sssgame\00_ssslibrary\sssimege.cpp(284): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\winapi\sssgame\00_ssslibrary\sssimege.cpp(291): warning C4244: '-=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\winapi\sssgame\00_ssslibrary\sssimege.cpp(292): warning C4244: '-=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\winapi\sssgame\00_ssslibrary\sssimege.cpp(308): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\winapi\sssgame\00_ssslibrary\sssimege.cpp(309): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\winapi\sssgame\00_ssslibrary\sssimege.cpp(316): warning C4244: '-=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\winapi\sssgame\00_ssslibrary\sssimege.cpp(317): warning C4244: '-=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\winapi\sssgame\00_ssslibrary\sssimege.cpp(330): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\winapi\sssgame\00_ssslibrary\sssimege.cpp(331): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\winapi\sssgame\00_ssslibrary\sssimege.cpp(340): warning C4244: '-=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\winapi\sssgame\00_ssslibrary\sssimege.cpp(341): warning C4244: '-=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\winapi\sssgame\00_ssslibrary\sssimege.cpp(387): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\winapi\sssgame\00_ssslibrary\sssimege.cpp(388): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\winapi\sssgame\00_ssslibrary\sssimege.cpp(392): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\winapi\sssgame\00_ssslibrary\sssimege.cpp(393): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\winapi\sssgame\00_ssslibrary\sssimege.cpp(425): warning C4244: '=': 'float'에서 'BYTE'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  SssImegeManeger.cpp
+  SssInput.cpp
   SssObject.cpp
   SssSound.cpp
 e:\winapi\sssgame\00_ssslibrary\ssssound.cpp(67): warning C4244: 'return': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  SssSprite.cpp
+  SssSpriteManeger.cpp
+e:\winapi\sssgame\00_ssslibrary\sssspritemaneger.cpp(22): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\winapi\sssgame\00_ssslibrary\sssspritemaneger.cpp(55): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  SssTimer.cpp
   SssWindow.cpp
   00_SssLibrary.vcxproj -> E:\WinAPI\SssGame\00_SssLibrary\../../output/Release/x64/00_SssLibrary.lib
   .\\SssBitMap.h

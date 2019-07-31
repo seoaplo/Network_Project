@@ -11,7 +11,6 @@ bool SssPlayerRun::Init(SssPlayer* Parent, HDC OffScreen, SssPoint* Pos, HDC Win
 }
 bool SssPlayerRun::Frame()
 {
-	pParent->DashPower = false;
 	if (pParent->CheckArrowkey == 'A')
 	{
 		if (pParent->bStopRight)
@@ -23,7 +22,7 @@ bool SssPlayerRun::Frame()
 			pParent->MyRealPos->x -= pParent->iSpeed * GetSecPerFrame;
 		}
 	}
-	else
+	else if(pParent->CheckArrowkey == 'D')
 	{
 		if (pParent->bStopLeft)
 		{
@@ -49,7 +48,7 @@ bool SssPlayerRun::Render()
 	{
 		SpriteImege->Draw(MyOffScreen, pParent->CameraPos, pParent->iPlayerSize, IDO_RECT);
 	}
-	else
+	else if(pParent->CheckArrowkey == 'A')
 	{
 		SpriteImege->Draw(MyOffScreen, pParent->CameraPos, pParent->iPlayerSize, IDO_WidthMirror);
 	}

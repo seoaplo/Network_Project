@@ -15,19 +15,23 @@ public:
 	int		PushUser(SOCKET sock);
 	bool	DeleteUser(int iUserNum);
 public:
+	bool Init();
+	bool Frame();
+	bool Release();
+public:
 	SUser& GetUser(int iUserNum)
 	{
 		SScopeRock_Mutex ScopeLock(Mutex);
 		return m_UserPool[iUserNum];
 	}
-public:
-	bool Init();
-	bool Frame();
-	bool Release();
-public:
 	std::vector<SUser>& GetUserPool()
 	{
 		return m_UserPool;
+	}
+	int GetSize()
+	{
+		SScopeRock_Mutex ScopeLock(Mutex);
+		return m_UserPool.size();
 	}
 private:
 	SUserPool();

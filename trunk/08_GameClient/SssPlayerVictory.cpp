@@ -30,7 +30,7 @@ bool SssPlayerVictory::Frame()
 	}
 	else
 	{
-		pParent->MyRealPos->y -= pParent->iDashSpeed * 3 * GetSecPerFrame;
+		pParent->MyRealPos->y -= 100 * 3 * GetSecPerFrame;
 	}
 
 	pParent->MyPos.x = pParent->MyRealPos->x;

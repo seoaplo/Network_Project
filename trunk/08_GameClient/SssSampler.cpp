@@ -1,12 +1,11 @@
 #include "SssSampler.h"
 
-
 SSSWINDOW(RockmanX_NoBuster)
 
 #pragma region Begin
 bool SssSampler::BeginInit()
 {
-	_CrtSetBreakAlloc(11849);
+	g_pCore = this;
 	return true;
 }
 bool SssSampler::BeginFrame()
@@ -62,11 +61,12 @@ bool SssSampler::EndRenderer()
 #pragma endregion
 SssSampler::SssSampler()
 {
+	g_pCore = this;
 }
 
 
 SssSampler::~SssSampler()
 {
-	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	//_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
 }

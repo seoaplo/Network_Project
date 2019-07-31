@@ -67,6 +67,11 @@ public:
 		SScopeRock_Mutex Lock(m_Mutex);
 		m_addr = sockaddr;
 	}
+	void SetName(C_STR Name)
+	{
+		SScopeRock_Mutex Lock(m_Mutex);
+		m_UserName = Name;
+	}
 public:
 	// Getter
 	const bool& GetConnect()
@@ -98,6 +103,11 @@ public:
 	{
 		SScopeRock_Mutex Lock(m_Mutex);
 		return m_addr;
+	}
+	const C_STR& GetName()
+	{
+		SScopeRock_Mutex Lock(m_Mutex);
+		return m_UserName;
 	}
 public:
 	SUser();

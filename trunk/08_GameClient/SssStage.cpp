@@ -1,8 +1,132 @@
 #include "SssStage.h"
+#include "Game/SssCore.h"
+#include "resource.h"
 
+static SssStage* g_Stage;
+
+LRESULT CALLBACK LoginProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
+{
+	return g_Stage->MsgProc(hWnd, iMessage, wParam, lParam);
+}
+
+LRESULT SssStage::MsgProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
+{
+	switch (iMessage)
+	{
+	case WM_INITDIALOG:
+	{
+		m_hLogin = hWnd;
+		m_hEdit = GetDlgItem(m_hLogin, IDC_EDIT1);
+		m_hButton = GetDlgItem(m_hLogin, ID_BUTTON);
+	}break;
+	case WM_COMMAND:
+	{
+		switch (LOWORD(wParam))
+		{
+		
+		case ID_BUTTON:
+		{	 
+			char buffer[MAX_PATH] = { 0, };
+			SendMessageA(m_hEdit,
+				WM_GETTEXT,
+				MAX_PATH,
+				(LPARAM)buffer);
+
+			int iSize = strlen(buffer);
+			if (iSize >= USER_NAME_SIZE)
+			{
+				MessageBox(SssCore::g_pCore->MyhWindow, L"이름을 20자 이내로 적어 주시오.", L"MSG", 0);
+				break;
+			}
+
+			PACKET pack;
+			pack.Header.type = PACKET_CHAR_NAME_CS_SEND;
+			pack.Header.len = PACKET_HEADER_SIZE + sizeof(iSize);
+
+			strcpy_s(pack.msg, buffer);
+			I_SendPacketPool.Push(pack);
+
+			PlayerName = buffer;
+			EndDialog(m_hLogin, NULL);
+		}
+		break;
+		}
+	}
+	}
+	return 0;
+}
+
+bool SssStage::InitPlayerArray()
+{
+	m_PlayerArray.resize(10);
+	POINT Point;
+
+	Point.x = -1000;
+	Point.y = -1000;
+
+	int iCount = 0;
+	for (SssObject& Object : m_PlayerArray)
+	{
+		Object.Init(MyScreen, Point, MyWindowDC);
+	}
+
+	//MyBos->GetPlayer(*Object);
+	return true;
+}
+bool SssStage::InitBoss()
+{
+	MyBos = new SssMainBoss;
+	POINT Point;
+
+	Point.x = -1000;
+	Point.y = -1000;
+
+	MyBos->Init(MyScreen, Point, MyWindowDC);
+	MyBos->GetPlayer(m_PlayerArray[0]);
+	return true;
+}
+bool SssStage::InitWallArray()
+{
+	m_WallArray.resize(10);
+	
+	POINT Point;
+
+	Point.x = -1000;
+	Point.y = -1000;
+
+	int iCount = 0;
+	for (SssObject& Object : m_WallArray)
+	{
+		Object.Init(MyScreen, Point, MyWindowDC);
+	}
+
+	return true;
+}
+bool SssStage::InitGroundArray()
+{
+	m_GroundArray.resize(10);
+
+	POINT Point;
+
+	Point.x = -1000;
+	Point.y = -1000;
+	int iCount = 0;
+
+	for (SssObject& Object : m_GroundArray)
+	{
+		Object.Init(MyScreen, Point, MyWindowDC);
+	}
+	return true;
+}
 
 bool SssStage::Init(HDC WindowDC, HDC OffScreen)
 {
+	iChangeSceen = -1;
+	m_fLoginWait = 0.0f;
+	m_bLogin = false;
+
+	g_Stage = this;
+	m_iIndex = -1;
 	m_Client.Init();
 	PACKET JoinPack;
 	ZeroMemory(&JoinPack, PACKET_MAX_DATA_SIZE);
@@ -11,16 +135,7 @@ bool SssStage::Init(HDC WindowDC, HDC OffScreen)
 
 	I_SendPacketPool.Push(JoinPack);
 	
-	while (1)
-	{
-		PacketProcess();
-		if (m_bLogin)
-		{
-			break;
-		}
-	}
-
-	return true;
+	DialogBox(SssCore::g_pCore->MyhInstance, MAKEINTRESOURCE(IDD_INPUTNAME), HWND_DESKTOP, LoginProc);
 
 	MyWindowDC = WindowDC;
 	MyOffScreenDC = OffScreen;
@@ -44,8 +159,6 @@ bool SssStage::Init(HDC WindowDC, HDC OffScreen)
 	CameraPoint.x = 0;
 	CameraPoint.y = 0;
 
-	iChangeSceen = -1;
-
 	fReadyTime = 0;
 	fReadyMaxTime = 3.0f;
 
@@ -57,136 +170,10 @@ bool SssStage::Init(HDC WindowDC, HDC OffScreen)
 	LoseTime = 0.0f;
 	LoseMaxTime = 5.0f;
 
-#pragma region Ground
-	SssObject* Object;
-	Object = new SssGround;
-	
-	POINT Point;
-	Point.x = 256 + 16;
-	Point.y = 768 - 32;
-	
-	Object->Init(MyScreen, Point, WindowDC);
-	MyObjectList.push_back(Object);
-
-	Object = new SssGround;
-
-	Point.x = 256 + 512 + 16;
-	Point.y = 768 -32;
-
-	Object->Init(MyScreen, Point, WindowDC);
-	MyObjectList.push_back(Object);
-
-	Object = new SssGround;
-
-	Point.x = 2048 - 256 - 16;
-	Point.y = 768 - 32;
-
-	Object->Init(MyScreen, Point, WindowDC);
-	MyObjectList.push_back(Object);
-
-	Object = new SssGround;
-
-	Point.x = 2048 - 256 - 512 - 16;
-	Point.y = 768 - 32;
-
-	Object->Init(MyScreen, Point, WindowDC);
-	MyObjectList.push_back(Object);
-
-#pragma endregion
-
-#pragma region Cell
-	Object = new SssGround;
-
-	Point.x = 256;
-	Point.y = -32;
-
-	Object->Init(MyScreen, Point, WindowDC);
-	MyObjectList.push_back(Object);
-
-	Object = new SssGround;
-
-	Point.x = 256 + 512;
-	Point.y = -32;
-
-	Object->Init(MyScreen, Point, WindowDC);
-	MyObjectList.push_back(Object);
-
-	Object = new SssGround;
-
-	Point.x = 2048 - 256;
-	Point.y = -32;
-
-	Object->Init(MyScreen, Point, WindowDC);
-	MyObjectList.push_back(Object);
-
-	Object = new SssGround;
-
-	Point.x = 2048 - 256 - 512;
-	Point.y = -32;
-
-	Object->Init(MyScreen, Point, WindowDC);
-	MyObjectList.push_back(Object);
-#pragma endregion
-
-#pragma region Wall
-	Object = new SssWall;
-	Point.x = 16;
-	Point.y = 768 - (384 / 2);
-
-	Object->Init(MyScreen, Point, WindowDC);
-	MyObjectList.push_back(Object);
-
-	Object = new SssWall;
-	Point.x = 16;
-	Point.y = 768 - 384 - (384 / 2);
-
-	Object->Init(MyScreen, Point, WindowDC);
-	MyObjectList.push_back(Object);
-
-	Object = new SssWall;
-	Point.x = 2048 - 16;
-	Point.y = 768 - (384 / 2);
-
-	Object->Init(MyScreen, Point, WindowDC);
-	MyObjectList.push_back(Object);
-
-	Object = new SssWall;
-	Point.x = 2048 - 16;
-	Point.y = 768 - 384 - (384 / 2);
-
-	Object->Init(MyScreen, Point, WindowDC);
-	MyObjectList.push_back(Object);
-
-#pragma endregion 
-
-	SssMainBoss* MyBos = new SssMainBoss;
-	Object = MyBos;
-	Point.x = 900;
-	Point.y = 768 - 32 -153 - 30;
-
-	Object->Init(MyScreen, Point, WindowDC);
-	MyObjectList.push_back(Object);
-
-	Object = new SssPlayer;
-	Point.x = 100;
-	Point.y = 768 - 92;
-
-	Object->Init(MyScreen, Point, WindowDC);
-	MyObjectList.push_back(Object);
-
-	MyBos->GetPlayer(*Object);
-
-	SingleSoundManeger.Play(iSoundIndex, FMOD_LOOP_NORMAL);
-	SingleSoundManeger.Volume(iSoundIndex, 0.5, false);
-
-	Object = new SssPlayer;
-	Point.x = 300;
-	Point.y = 768 - 92;
-
-	Object->Init(MyScreen, Point, WindowDC);
-	MyObjectList.push_back(Object);
-
-	MyBos->GetPlayer(*Object);
+	InitGroundArray();
+	InitWallArray();
+	InitPlayerArray();
+	InitBoss();
 
 	SingleSoundManeger.Play(iSoundIndex, FMOD_LOOP_NORMAL);
 	SingleSoundManeger.Volume(iSoundIndex, 0.5, false);
@@ -195,8 +182,18 @@ bool SssStage::Init(HDC WindowDC, HDC OffScreen)
 
 bool SssStage::Frame()
 {
+	PacketProcess();
 	m_Client.Frame();
-	return true;
+	if (!m_bLogin)
+	{
+		m_fLoginWait += GetSecPerFrame;
+		if (m_fLoginWait >= 10.0f)
+		{
+			iChangeSceen = SC_TITLE;
+			MessageBox(SssCore::g_pCore->MyhWindow, L"접속시간이 초과 되었습니다.", L"MSG", 0);
+		}
+		return true;
+	}
 
 	SingleInput.CheckKeyState(VK_SPACE);
 	SingleInput.CheckKeyState(VK_SHIFT);
@@ -207,32 +204,47 @@ bool SssStage::Frame()
 	{
 		bLose = true;
 	}
-
+	for (SssWall& WallObject : m_WallArray)
+	{
+		WallObject.Frame();
+	}
+	for (SssGround& GroundObject : m_GroundArray)
+	{
+		GroundObject.Frame();
+	}
+	MyBos->Frame();
 	if (fReadyTime < fReadyMaxTime)
 	{
-		fReadyTime += GetSecPerFrame;
+		MyBos->SetReady();
 	}
-	std::list<SssObject*>::iterator Itor;
-	for (Itor = MyObjectList.begin(); Itor != MyObjectList.end(); Itor++)
+	if (bLose)
 	{
-		if (dynamic_cast<SssPlayer*>(*Itor) != NULL)
+		MyBos->SetLose();
+	}
+	if (MyBos->GetDeath())
+	{
+		bVictory = true;
+	}
+	for (SssPlayer& Player : m_PlayerArray)
+	{
+		Player.Frame();
+		if (Player.m_iIndex == m_iIndex)
 		{
-			if ((*Itor)->GetPos().x >= 516 && (*Itor)->GetPos().x <= 1536)
+			if (Player.GetPos().x >= 516 && Player.GetPos().x <= 1536)
 			{
-				CameraPoint.x = (*Itor)->GetPos().x - 516;
+				CameraPoint.x = Player.GetPos().x - 516;
 			}
-			else if ((*Itor)->GetPos().x < 516)
+			else if (Player.GetPos().x < 516)
 			{
 				CameraPoint.x = 0;
 			}
-			else if ((*Itor)->GetPos().x < 1536)
+			else if (Player.GetPos().x < 1536)
 			{
 				CameraPoint.x = 1024;
 			}
-			SssPlayer* Player = dynamic_cast<SssPlayer*>(*Itor);
-			if (fReadyTime < fReadyMaxTime)
+			/*if (fReadyTime < fReadyMaxTime)
 			{
-				Player->SetReady();
+				Player.SetReady();
 			}
 			if (bVictory)
 			{
@@ -241,35 +253,19 @@ bool SssStage::Frame()
 			if (Player->GetDeath())
 			{
 				bLose = true;
-			}
-			Player->SetKeyState(VK_SPACE, SingleInput.GetMyStateKey(VK_SPACE));
-			Player->SetKeyState(VK_SHIFT, SingleInput.GetMyStateKey(VK_SHIFT));
-			Player->SetKeyState(VK_CONTROL, SingleInput.GetMyStateKey(VK_CONTROL));
-
-			Player->SetKeyState('A', SingleInput.GetMyStateKey('A'));
-			Player->SetKeyState('D', SingleInput.GetMyStateKey('D'));
-
+			}*/
+			Player.SetKeyState(VK_SPACE, SingleInput.GetMyStateKey(VK_SPACE));
+			Player.SetKeyState(VK_SHIFT, SingleInput.GetMyStateKey(VK_SHIFT));
+			Player.SetKeyState(VK_CONTROL, SingleInput.GetMyStateKey(VK_CONTROL));
+			
+			Player.SetKeyState('A', SingleInput.GetMyStateKey('A'));
+			Player.SetKeyState('D', SingleInput.GetMyStateKey('D'));
 		}
-		if (dynamic_cast<SssMainBoss*>(*Itor) != NULL)
-		{
-			SssMainBoss* Boss = dynamic_cast<SssMainBoss*>(*Itor);
-			if (fReadyTime < fReadyMaxTime)
-			{
-				Boss->SetReady();
-			}
-			if (bLose)
-			{
-				Boss->SetLose();
-			}
-			if (Boss->GetDeath())
-			{
-				bVictory = true;
-			}
-		}
-		if (!(*Itor)->Frame())
-		{
-			return false;
-		}
+	}
+	
+	if (fReadyTime < fReadyMaxTime)
+	{
+		fReadyTime += GetSecPerFrame;
 	}
 	if (bVictory && VictoryTime < VictoryMaxTime)
 	{
@@ -294,7 +290,6 @@ bool SssStage::Frame()
 }
 bool SssStage::Render()
 {
-	return true;
 
 	COLORREF bkColor = RGB(255, 0, 0);
 	HBRUSH hbrBack = CreateSolidBrush(bkColor);
@@ -305,10 +300,19 @@ bool SssStage::Render()
 	DeleteObject(SelectObject(MyScreen, hbrOld));
 
 	MyBackGroundImege->Draw(MyScreen, MyPoint, 1, SRCCOPY);
-	std::list<SssObject*>::iterator Itor;
-	for (Itor = MyObjectList.begin(); Itor != MyObjectList.end(); Itor++)
+	for (SssWall& WallObject : m_WallArray)
 	{
-		(*Itor)->Render();
+		WallObject.Render();
+	}
+	for (SssGround& GroundObject : m_GroundArray)
+	{
+		GroundObject.Render();
+	}
+	MyBos->Render();
+	
+	for (SssPlayer& Player : m_PlayerArray)
+	{
+		Player.Render();
 	}
 
 	BitBlt(MyOffScreenDC, 0, 0, 1024, 768, MyScreen, CameraPoint.x, CameraPoint.y, SRCCOPY);
@@ -320,19 +324,34 @@ bool SssStage::Release()
 	m_bLogin = false;
 	return true;
 
-	std::list<SssObject*>::iterator Itor;
-	for (Itor = MyObjectList.begin(); Itor != MyObjectList.end(); Itor++)
+	for (SssWall& WallObject : m_WallArray)
 	{
-		(*Itor)->Release();
-		delete (*Itor);
-		*Itor = nullptr;
+		WallObject.Release();
 	}
-	MyObjectList.clear();
+	for (SssGround& GroundObject : m_GroundArray)
+	{
+		GroundObject.Release();
+	}
+	MyBos->Release();
+
+	for (SssPlayer& Player : m_PlayerArray)
+	{
+		Player.Release();
+	}
+	m_WallArray.clear();
+	m_GroundArray.clear();
+	m_PlayerArray.clear();
+	MyBos = nullptr;
+
 	SingleSoundManeger.Stop(iSoundIndex);
 	DeleteObject(SelectObject(MyScreen, OldBitMap));
 	DeleteDC(MyScreen);
 	
 	m_Client.Release();
+	g_Stage = nullptr;
+	m_fLoginWait = 0.0f;
+	PlayerName.clear();
+
 	return true;
 }
 
@@ -345,9 +364,53 @@ bool SssStage::PacketProcess()
 		switch (pack.Header.type)
 		{
 		case PACKET_JOIN_USER_SC:
-			int kkk;
-			kkk = 10;
-			break;
+		{
+			m_iIndex = *((int*)pack.msg);
+		}break;
+		case PACKET_CHAR_NAME_SC_REQ:
+		{
+			bool LoginComplet;
+			LoginComplet = *((bool*)pack.msg);
+			if (LoginComplet)
+			{
+				m_bLogin = true;
+
+				PACKET pack;
+				ZeroMemory(pack.msg, PACKET_MAX_DATA_SIZE);
+				pack.Header.type = PACKET_USER_LOGIN_CS;
+				pack.Header.len = PACKET_HEADER_SIZE;
+
+				I_SendPacketPool.Push(pack);
+			}
+			else
+			{
+				iChangeSceen = SC_TITLE;
+				MessageBox(SssCore::g_pCore->MyhWindow, L"접속할 수 없습니다.", L"MSG", 0);
+				return false;
+			}
+		}break;
+			
+		case PACKET_USER_LOGIN_SC:
+		{
+			int iIndex = *((int*)pack.msg);
+			m_PlayerArray[iIndex].PacketProcess(pack);
+		}break;
+		case PACKET_BOSS_SET:
+		{	BOSS_STATE BossState;
+			memcpy(&BossState, pack.msg, sizeof(BOSS_STATE));
+			MyBos->GetPlayer(m_PlayerArray[BossState.TargetIndex]);
+			MyBos->PacketProcess(pack);
+		}break;
+		case PACKET_WALL_SET:
+		{
+			int iIndex = *((int*)pack.msg);
+			m_WallArray[iIndex].PacketProcess(pack);
+		}break;
+		case PACKET_GROUND_SET:
+		{			
+			int iIndex = *((int*)pack.msg);
+			m_GroundArray[iIndex].PacketProcess(pack);
+		}break;
 		default:
 			break;
 		}

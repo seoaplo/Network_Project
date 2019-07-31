@@ -1,13 +1,15 @@
 #include "SPacketThread.h"
 
+bool SPacketThread::g_bProcessSuccecss;
+
 DWORD WINAPI PacketThread(LPVOID arg)
 {
 	SPacketThread* Process = (SPacketThread*)arg;
 
-	bool ProcessSuccess = true;
-	while (ProcessSuccess)
+	SPacketThread::g_bProcessSuccecss = true;
+	while (SPacketThread::g_bProcessSuccecss)
 	{
-		ProcessSuccess = Process->PacketProcess();
+		SPacketThread::g_bProcessSuccecss = Process->PacketProcess();
 	}
 	return 1;
 }
@@ -49,8 +51,11 @@ bool SPacketThread::Frame()
 }
 bool SPacketThread::Release()
 {
-	CloseHandle(PacketThread);
-	closesocket(m_Sock);
+	g_bProcessSuccecss = false;
+	if (PacketThread != NULL) CloseHandle(m_hThread);
+	if (m_Sock != NULL) closesocket(m_Sock);
+	m_Sock = NULL;
+	m_hThread = NULL;
 	return true;
 }
 
@@ -63,7 +68,7 @@ bool SPacketThread::PacketProcess()
 
 	timeval time;
 	time.tv_sec = 0; // 초
-	time.tv_usec = 17;// 마이크로 초
+	time.tv_usec = 100;// 마이크로 초
 
 	int iRet = select(0, &m_rSet, &m_wSet, NULL, &time);
 	if (iRet == SOCKET_ERROR)
@@ -166,6 +171,8 @@ bool SPacketThread::Recv()
 
 bool SPacketThread::Send()
 {
+	if (I_SendPacketPool.Empty() == true) return true;
+
 	SScopeRock_Mutex Lock(m_Mutex);
 	while (I_SendPacketPool.Empty() == false)
 	{
@@ -192,6 +199,7 @@ bool SPacketThread::Send()
 			}
 		} while (pack.Header.len > iSendByte);
 	}
+	return true;
 }
 
 SPacketThread::SPacketThread()

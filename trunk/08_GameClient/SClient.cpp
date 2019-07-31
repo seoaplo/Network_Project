@@ -15,7 +15,6 @@ bool SClient::Frame()
 bool SClient::Release()
 {
 	m_PakcetThread.Release();
-	closesocket(m_listensock);
 	WSACleanup();
 	return true;
 }

@@ -1,6 +1,21 @@
 #include "SssMainBoss.h"
 
+bool SssMainBoss::PacketProcess(PACKET pack)
+{
+	switch (pack.Header.type)
+	{
+		case PACKET_BOSS_SET:
+		{
+			BOSS_STATE BossState;
+			memcpy(&BossState, pack.msg, sizeof(BOSS_STATE));
 
+			MyPos = BossState.BossPoint;
+			MyState = BossState.BossState;
+			MybeforeState = BossState.BossState;
+		}
+	}
+	return true;
+}
 
 bool SssMainBoss::Init(HDC OffScreen, POINT TargetPos, HDC WindowDC)
 {
@@ -108,23 +123,6 @@ bool SssMainBoss::Init(HDC OffScreen, POINT TargetPos, HDC WindowDC)
 	MySprite = MyStateList.find(MyState)->second;
 
 	MyHP = 100;
-
-	POINT SubBoss1Point;
-	SubBoss1Point.x = 200;
-	SubBoss1Point.y = 600;
-	bSubBoss1 = false;
-	SubBoss1MaxTime = 6.0f;
-	SubBoss1Time = 0;
-
-	POINT SubBoss2Point;
-	SubBoss2Point.x = 100;
-	SubBoss2Point.y = 450;
-	bSubBoss2 = false;
-	SubBoss2MaxTime = 4.0f;
-	SubBoss2Time = 0;
-
-	MySssSubBoss1.Init(OffScreen, SubBoss1Point, WindowDC);
-	MySssSubBoss2.Init(OffScreen, SubBoss2Point, WindowDC);
 	
 	return true;
 }
@@ -150,17 +148,6 @@ bool SssMainBoss::Frame()
 	{
 		bSummon = true;
 		bAttack = false;
-		if (rand() % 2 != 0)
-		{
-			bSubBoss1 = true;
-			MySssSubBoss1.SetReady();
-		}
-		else
-		{
-			bSubBoss2 = true;
-			MySssSubBoss2.SetReady();
-		}
-
 	}
 
 	
@@ -189,25 +176,6 @@ bool SssMainBoss::Frame()
 		MyPos.x = -500;
 		MyPos.y = -500;
 		bStop = true;
-	}
-
-	if (bSubBoss1 && SubBoss1MaxTime > SubBoss1Time)
-	{
-		SubBoss1Time += GetSecPerFrame;
-	}
-	else if(bSubBoss1)
-	{
-		bSubBoss1 = false;
-		SubBoss1Time = 0;
-	}
-	if (bSubBoss2 && SubBoss2MaxTime > SubBoss2Time)
-	{
-		SubBoss2Time += GetSecPerFrame;
-	}
-	else if (bSubBoss2)
-	{
-		bSubBoss2 = false;
-		SubBoss2Time = 0;
 	}
 
 	if (bStop && MyStopTime < MyStopMaxTime)
@@ -261,9 +229,6 @@ bool SssMainBoss::Frame()
 	else
 	{
 		MyCollider->SetPoint(MyPos);
-		MySssSubBoss1.GetPlayerPoint(MyPlayer->GetPos());
-		MySssSubBoss1.Frame();
-		MySssSubBoss2.Frame();
 	}
 	if (MybeforeState != MyState)
 	{
@@ -308,8 +273,6 @@ bool SssMainBoss::Render()
 		BitBlt(MyOffScreen, CameraRect.left, CameraRect.top, CameraRect.right, CameraRect.bottom,
 			MyScreen, 0, 0, SRCCOPY);
 	}
-	MySssSubBoss1.Render();
-	MySssSubBoss2.Render();
 	
 	
 	return true;
@@ -322,8 +285,6 @@ bool SssMainBoss::Release()
 		CollisionManeger.DeleteColider(MyCollider);
 		MyCollider = NULL;
 	}
-	MySssSubBoss1.Release();
-	MySssSubBoss2.Release();
 	DeleteObject(SelectObject(MyScreen, MyOldBitMap));
 	DeleteDC(MyScreen);
 

@@ -20,7 +20,7 @@ bool SssPlayerStart::Frame()
 	float fChangeTime = 0.0f;
 	if (pParent->bTeleport)
 	{
-		fChangeTime = pParent->iDashSpeed * 3 * GetSecPerFrame;
+		fChangeTime = 100 * 3 * GetSecPerFrame;
 		pParent->MyRealPos->y += min(7, fChangeTime);
 			
 	}

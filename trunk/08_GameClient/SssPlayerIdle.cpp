@@ -12,7 +12,6 @@ bool SssPlayerIdle::Init(SssPlayer* Parent, HDC OffScreen, SssPoint* Pos, HDC Wi
 }
 bool SssPlayerIdle::Frame()
 {
-	pParent->DashPower = false;
 	if (pParent->BeforeArrowkey == 'A')
 	{
 		Right = false;
@@ -32,11 +31,11 @@ bool SssPlayerIdle::Frame()
 }
 bool SssPlayerIdle::Render()
 {
-	if (Right)
+	if (pParent->BeforeArrowkey == 'D')
 	{
 		SpriteImege->Draw(MyOffScreen, pParent->CameraPos, pParent->iPlayerSize, IDO_RECT);
 	}
-	else
+	else if (pParent->BeforeArrowkey == 'A')
 	{
 		SpriteImege->Draw(MyOffScreen, pParent->CameraPos, pParent->iPlayerSize, IDO_WidthMirror);
 	}

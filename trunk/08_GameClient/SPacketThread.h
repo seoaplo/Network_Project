@@ -15,6 +15,8 @@ public:
 	HANDLE	m_hThread;
 	SmartMutex m_Mutex;
 
+	static bool g_bProcessSuccecss;
+
 	DWORD			m_dwEndPos;
 	DWORD			m_dwStartPos;
 	DWORD			m_dwReadPos;

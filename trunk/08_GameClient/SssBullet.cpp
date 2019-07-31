@@ -1,6 +1,9 @@
 #include "SssBullet.h"
 
-
+bool SssBullet::PacketProcess(PACKET pack)
+{
+	return true;
+}
 
 bool SssBullet::Init(HDC OffScreen, POINT TargetPos, HDC WindowDC, float fSpeed, SssPoint Distans, SssPoint RealPos , float TargetDgree)
 {

@@ -1,11 +1,11 @@
 #pragma once
+#include "Protocol.h"
 #include "Game/SssObject.h"
 #include "SssBullet.h"
 #include "SssFSM.h"
 #include <time.h>
 #include "SssSubBoss1.h"
 #include "SssSubBoss2.h"
-
 enum BossState
 {
 	Boss_Idle = 0,
@@ -82,15 +82,7 @@ public:
 	bool Release();
 	bool CheckEvent(SssObject& TargetObject);
 public:
-	bool bSubBoss1;
-	float SubBoss1MaxTime;
-	float SubBoss1Time;
-	SssSubBoss1 MySssSubBoss1;
-public:
-	bool bSubBoss2;
-	float SubBoss2MaxTime;
-	float SubBoss2Time;
-	SssSubBoss2 MySssSubBoss2;
+	virtual bool PacketProcess(PACKET pack);
 public:
 	void GetPlayer(SssObject& Player)
 	{

@@ -18,15 +18,7 @@ bool SssPlayerJump::Frame()
 		pParent->fJumpPower -= pParent->fGravity * GetSecPerFrame;
 		pParent->MyRealPos->y -= pParent->fJumpPower * GetSecPerFrame;
 	}
-	float Speed;
-	if (pParent->DashPower)
-	{
-		Speed = pParent->iDashSpeed;
-	}
-	else
-	{
-		Speed = pParent->iSpeed;
-	}
+	float Speed = pParent->iSpeed;
 	if (pParent->fJumpPower <= 1.0f)
 	{
 		bJump = false;

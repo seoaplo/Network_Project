@@ -1,7 +1,7 @@
 #pragma once
+#include "SServerStd.h"
+#include "Protocol.h"
 #include "Game/Ssslibheader.h"
-
-
 class SssGround :public SssObject
 {
 public:
@@ -13,6 +13,8 @@ public:
 	bool Release();
 	bool CheckEvent(SssObject& TargetObject);
 	bool CreateRect() { return true; }
+public:
+	bool PacketProcess(PACKET pack);
 public:
 	SssGround();
 	~SssGround();
@@ -29,6 +31,8 @@ public:
 	bool Release();
 	bool CheckEvent(SssObject& TargetObject);
 	bool CreateRect() { return true; }
+public:
+	bool PacketProcess(PACKET pack);
 public:
 	SssWall();
 	~SssWall();

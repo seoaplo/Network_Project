@@ -1,5 +1,8 @@
 #pragma once
 #include "SThread.h"
+#include "SGamePacketPool.h"
+#include "SssStage.h"
+
 class SGameThread : public SThread
 {
 public:

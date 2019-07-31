@@ -94,14 +94,6 @@ bool SPacketThread::PacketProcess()
 		USER_NUM UserNumber;
 		UserNumber.iUserNum = UserNum;
 
-		PACKET pack;
-		pack.Header.type = PACKET_JOIN_USER_SC;
-		pack.Header.len = PACKET_HEADER_SIZE + sizeof(USER_NUM);
-		ZeroMemory(pack.msg, PACKET_MAX_DATA_SIZE);
-		memcpy(pack.msg, &UserNumber, sizeof(USER_NUM));
-
-		TargetUser.PushSendPacket(pack);
-
 		TargetUser.SetConnect();
 		TargetUser.SetSockAddr(UserAddr);
 		printf("\nConnect ip : %s, Number : %d", inet_ntoa(UserAddr.sin_addr), UserNumber);
@@ -154,8 +146,7 @@ bool SPacketThread::PacketProcess()
 
 	while (I_PacketPool.Empty() == false)
 	{
-		SPacket UserPacket;
-		UserPacket = I_PacketPool.Pop();
+		SPacket UserPacket = I_PacketPool.Pop();
 
 		if (UserPacket.pack.Header.type & 0x1000)
 		{

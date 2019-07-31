@@ -25,6 +25,11 @@ public:
 		if(m_PacketPool.empty())	return true;
 		else						return false;
 	}
+	int GetSize()
+	{
+		SScopeRock_Mutex ScopeLock(Mutex);
+		return m_PacketPool.size();
+	}
 private:
 	SPacketPool();
 public:
