@@ -1,4 +1,6 @@
 #pragma once
+#include "SServerStd.h"
+#include "Protocol.h"
 #include "Game/Ssslibheader.h"
 #include "SssFSM.h"
 #include "SssEffect.h"
@@ -8,14 +10,10 @@ enum PlayerState
 	Player_Start = 0,
 	Player_Idle,
 	Player_Run,
-	Player_Dash,
-	Player_DashBreak,
 	Player_Jump,
 	Player_Air,
 	Player_Down,
 	Player_Victory,
-	Player_Climb,
-	Player_ClimbJump,
 	Player_Damege,
 	Player_Death,
 	Player_StateSize
@@ -25,14 +23,10 @@ enum PlayerEvent
 	pEvent_Start = 0,
 	pEvent_Idle,
 	pEvent_Run,
-	pEvent_Dash,
-	pEvent_DashBreak,
 	pEvent_Jump,
 	pEvent_Air,
 	pEvent_Down,
 	pEvent_Victory,
-	pEvent_Climb,
-	pEvent_ClimbJump,
 	pEvent_Damege,
 	pEvent_Death,
 	pEvent_StateSize
@@ -52,18 +46,15 @@ public:
 	float iPlayerSize;
 	POINT CameraPos;
 
+	std::string PlayerName;
 	DWORD m_KeyState[MAX_PATH];
+	bool m_bLogin;
+	int m_iIndex;
+
 public:
 	int iSpeed;
-	int iDashSpeed;
 	int BeforeArrowkey;
 	int CheckArrowkey;
-public:
-	float DashTime;
-	bool bDash;
-	bool DashPower;
-	float fBreakTime;
-	float fMaxBreakTime;
 public:
 	float fJumpPower;
 	float fMaxJumpPower;
@@ -75,11 +66,6 @@ public:
 public:
 	bool bStopLeft;
 	bool bStopRight;
-	bool bClimb;
-	float fClimbJumpTime;
-	float fClimbJumpMaxTime;
-	bool bClimbJumpRight;
-	bool bClimbJumpleft;
 	bool bCeiling;
 public:
 	bool DemegeDraw;
@@ -107,10 +93,6 @@ protected:
 	float fSoundMaxSize;
 	float fSoundSize;
 private:
-	int iDashSound;
-	float iDashSoundSize;
-	float iDashSoundMaxSize;
-private:
 	int iDownEffectSound;
 	float fDownEffectSoundSize;
 	float fDownEffectSoundMaxSize;
@@ -119,19 +101,7 @@ private:
 	int iJumpEffectSound2;
 	float  iJumpEffectSoundSize;
 	float  iJumpEffectSoundMaxSize;
-private:
-	float ClimbEffectTime;
-	float ClimbEffectMaxTime;
-	SssEffect ClimbEffect;
-private:
-	float ClimbJumpEffectTime;
-	float ClimbJumpEffectMaxTime;
-	SssEffect ClimbJumpEffect;
-private:
-	float DashEffectTime;
-	float DashEffectMaxTime;
-	SssEffect DashEffect;
-	SssSprite* DashEffectSprite;
+
 private:
 	RECT CheckWallRect;
 	POINT MyBeforePos;
@@ -155,6 +125,11 @@ public:
 	{
 		bReady = true;
 	}
+	void SetLogin(bool bLogin)
+	{
+		m_bLogin = bLogin;
+	}
+public:
 	bool GetDeath()
 	{
 		return bDeatth;
@@ -170,6 +145,8 @@ public:
 	virtual bool Render();
 	virtual bool Release();
 	virtual bool CheckEvent(SssObject& TargetObject);
+public:
+	bool PacketProcess(PACKET pack);
 public:
 	SssPlayer();
 	~SssPlayer();
@@ -203,36 +180,6 @@ public:
 public:
 	SssPlayerRun() {  };
 	~SssPlayerRun() {};
-};
-
-class SssPlayerDash : public SssPlayer
-{
-public:
-	float MaxDashTime;
-public:
-	bool Init(SssPlayer* Parent, HDC OffScreen, SssPoint* Pos, HDC WindowDC, SssCollider* TargetCollider);
-	bool Frame();
-	bool Render();
-	bool Release();
-	bool CheckEvent(SssObject& TargetObject);
-public:
-	SssPlayerDash() {};
-	~SssPlayerDash() {};
-};
-
-class SssPlayerDashBreak : public SssPlayer
-{
-public:
-	int DrawOption;
-public:
-	bool Init(SssPlayer* Parent, HDC OffScreen, SssPoint* Pos, HDC WindowDC, SssCollider* TargetCollider);
-	bool Frame();
-	bool Render();
-	bool Release();
-	bool CheckEvent(SssObject& TargetObject);
-public:
-	SssPlayerDashBreak() {  };
-	~SssPlayerDashBreak() {};
 };
 
 class SssPlayerJump : public SssPlayer
@@ -278,35 +225,6 @@ public:
 public:
 	SssPlayerDown() {  };
 	~SssPlayerDown() {};
-};
-
-
-class SssPlayerClimb : public SssPlayer
-{
-public:
-	bool Init(SssPlayer* Parent, HDC OffScreen, SssPoint* Pos, HDC WindowDC, SssCollider* TargetCollider);
-	bool Frame();
-	bool Render();
-	bool Release();
-	bool CheckEvent(SssObject& TargetObject);
-public:
-	SssPlayerClimb() {  };
-	~SssPlayerClimb() {};
-};
-
-class SssPlayerClimbJump : public SssPlayer
-{
-private:
-	int iClimbJumpSound;
-public:
-	bool Init(SssPlayer* Parent, HDC OffScreen, SssPoint* Pos, HDC WindowDC, SssCollider* TargetCollider);
-	bool Frame();
-	bool Render();
-	bool Release();
-	bool CheckEvent(SssObject& TargetObject);
-public:
-	SssPlayerClimbJump() {  };
-	~SssPlayerClimbJump() {};
 };
 
 class SssPlayerDamege : public SssPlayer

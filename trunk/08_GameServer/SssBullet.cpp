@@ -1,6 +1,9 @@
 #include "SssBullet.h"
 
-
+bool SssBullet::PacketProcess(PACKET pack)
+{
+	return true;
+}
 
 bool SssBullet::Init(HDC OffScreen, POINT TargetPos, HDC WindowDC, float fSpeed, SssPoint Distans, SssPoint RealPos , float TargetDgree)
 {
@@ -53,14 +56,14 @@ bool SssPlayerBullet::Init(HDC OffScreen, POINT TargetPos, HDC WindowDC,
 	COLORREF Color = RGB(29, 112, 189);
 	MyCollider = &CollisionManeger.AddCollider(MyPos, rect, this, Col_Point);
 	int Key = SingleSpriteManeger.CreateSprite
-	(L"../Data/PlayerEffect2.txt", L"../Data/PlayerAttack1.bmp", L"RectPlayerBullet", Color, WindowDC, 1.5);
+	(L"../../../data/PlayerEffect2.txt", L"../../../data/PlayerAttack1.bmp", L"RectPlayerBullet", Color, WindowDC, 1.5);
 	SpriteImege = SingleSpriteManeger.GetSprite(Key);
 
 
 	SssEffectTime = 0.0f;
 	SssEffectMaxTime = 0.1f;
-	MyEffect.Init(OffScreen, MyPos, WindowDC, L"../Data/PlayerAttack1.bmp", L"RectBulletLanding",
-		Color, L"../Data/PlayerEffect2.txt", "../Data/BulletLanding.wav", SssEffectMaxTime);
+	MyEffect.Init(OffScreen, MyPos, WindowDC, L"../../../data/PlayerAttack1.bmp", L"RectBulletLanding",
+		Color, L"../../../data/PlayerEffect2.txt", "../../../data/BulletLanding.wav", SssEffectMaxTime);
 	bDeleteReady = false;
 	
 	ObjectName = L"Player_Bullet";
@@ -149,14 +152,14 @@ bool SssSubBoss1Bullet::Init(HDC OffScreen, POINT TargetPos, HDC WindowDC,
 	COLORREF Color = RGB(29, 112, 189);
 	MyCollider = &CollisionManeger.AddCollider(MyPos, rect, this, Col_Rect);
 	int Key = SingleSpriteManeger.CreateSprite
-	(L"../Data/PlayerEffect1.txt", L"../Data/Player_Effect.bmp", L"RectMeteo", Color, WindowDC, 1.5);
+	(L"../../../data/PlayerEffect1.txt", L"../../../data/Player_Effect.bmp", L"RectMeteo", Color, WindowDC, 1.5);
 	SpriteImege = SingleSpriteManeger.GetSprite(Key);
 
 
 	SssEffectTime = 0.0f;
 	SssEffectMaxTime = 0.1f;
-	MyEffect.Init(OffScreen, MyPos, WindowDC, L"../Data/Player_Effect.bmp", L"RectEffectBoom",
-		Color, L"../Data/PlayerEffect1.txt", "../Data/Boom.wav", SssEffectMaxTime);
+	MyEffect.Init(OffScreen, MyPos, WindowDC, L"../../../data/Player_Effect.bmp", L"RectEffectBoom",
+		Color, L"../../../data/PlayerEffect1.txt", "../../../data/Boom.wav", SssEffectMaxTime);
 	bDeleteReady = false;
 
 	ObjectName = L"Boss_Bullet";

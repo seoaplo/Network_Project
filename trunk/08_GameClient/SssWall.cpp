@@ -26,9 +26,9 @@ bool SssGround::Init(HDC OffScreen, POINT TargetPos, HDC WindowDC)
 	MyRect;
 	MyRect.left = 0;
 	MyRect.top = 0;
-	MyRect.right = 512;
+	MyRect.right = 67;
 	MyRect.bottom = 64;
-	UINT Key = SingleImegeManeger.CreateImege(MyRect, L"../../../data/Wall2.bmp", WindowDC);
+	UINT Key = SingleImegeManeger.CreateImege(MyRect, L"../../../data/Wall3.bmp", WindowDC);
 	MyImege = SingleImegeManeger.GetImege(Key);
 
 	MyCollider = &CollisionManeger.AddCollider(MyPos, MyRect, this, Col_Rect);

@@ -1,7 +1,7 @@
 #pragma once
+#include "Protocol.h"
 #include "Game/Ssslibheader.h"
 #include "SssEffect.h"
-
 class SssBullet : public SssObject
 {
 public:
@@ -24,6 +24,8 @@ public:
 	{
 		return bDelete;
 	}
+public:
+	virtual bool PacketProcess(PACKET pack);
 public:
 	SssBullet();
 	~SssBullet();

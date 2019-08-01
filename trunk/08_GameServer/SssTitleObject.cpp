@@ -22,6 +22,7 @@ bool SssTitleObject::Init(HDC OffScreen, POINT TargetPos, HDC WindowDC, const ch
 	bInside = false;
 	return true;
 }
+
 bool SssTitleObject::Init(HDC OffScreen, POINT TargetPos, HDC WindowDC, const char* SoundStirng, RECT TargetRect,
 	const TCHAR* RouteString, const TCHAR* RectString, const TCHAR* RectRouteString, const TCHAR* MaskRouteString, bool Check, float fScale)
 {
@@ -134,8 +135,7 @@ bool SssStartObject::Init(HDC OffScreen, POINT TargetPos, HDC WindowDC, const ch
 	return true;
 }
 bool SssStartObject::Init(HDC OffScreen, POINT TargetPos, HDC WindowDC, const char* SoundStirng, RECT TargetRect,
-	const TCHAR* RouteString, const TCHAR* RectString, const TCHAR* RectRouteString, const TCHAR* MaskRouteString, bool Check, float fScale)
-{
+	const TCHAR* RouteString, const TCHAR* RectString, const TCHAR* RectRouteString, const TCHAR* MaskRouteString, bool Check, float fScale) {
 	MyOffScreen = OffScreen;
 	MyPos = TargetPos;
 	if (SoundStirng != NULL)

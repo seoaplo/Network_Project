@@ -39,13 +39,6 @@ LRESULT SssStage::MsgProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam
 				break;
 			}
 
-			PACKET pack;
-			pack.Header.type = PACKET_CHAR_NAME_CS_SEND;
-			pack.Header.len = PACKET_HEADER_SIZE + sizeof(iSize);
-
-			strcpy_s(pack.msg, buffer);
-			I_SendPacketPool.Push(pack);
-
 			PlayerName = buffer;
 			EndDialog(m_hLogin, NULL);
 		}
@@ -64,13 +57,11 @@ bool SssStage::InitPlayerArray()
 	Point.x = -1000;
 	Point.y = -1000;
 
-	int iCount = 0;
 	for (SssObject& Object : m_PlayerArray)
 	{
 		Object.Init(MyScreen, Point, MyWindowDC);
 	}
 
-	//MyBos->GetPlayer(*Object);
 	return true;
 }
 bool SssStage::InitBoss()
@@ -82,40 +73,39 @@ bool SssStage::InitBoss()
 	Point.y = -1000;
 
 	MyBos->Init(MyScreen, Point, MyWindowDC);
-	MyBos->GetPlayer(m_PlayerArray[0]);
 	return true;
 }
 bool SssStage::InitWallArray()
 {
-	m_WallArray.resize(10);
+	m_WallArray.resize(6);
 	
 	POINT Point;
 
 	Point.x = -1000;
 	Point.y = -1000;
 
-	int iCount = 0;
 	for (SssObject& Object : m_WallArray)
 	{
 		Object.Init(MyScreen, Point, MyWindowDC);
 	}
-
 	return true;
 }
 bool SssStage::InitGroundArray()
 {
-	m_GroundArray.resize(10);
+	m_GroundArray.resize(20);
 
 	POINT Point;
 
 	Point.x = -1000;
 	Point.y = -1000;
-	int iCount = 0;
 
 	for (SssObject& Object : m_GroundArray)
 	{
 		Object.Init(MyScreen, Point, MyWindowDC);
 	}
+
+	m_Victory.Init(MyScreen, Point, MyWindowDC);
+
 	return true;
 }
 
@@ -127,6 +117,7 @@ bool SssStage::Init(HDC WindowDC, HDC OffScreen)
 
 	g_Stage = this;
 	m_iIndex = -1;
+
 	m_Client.Init();
 	PACKET JoinPack;
 	ZeroMemory(&JoinPack, PACKET_MAX_DATA_SIZE);
@@ -141,19 +132,19 @@ bool SssStage::Init(HDC WindowDC, HDC OffScreen)
 	MyOffScreenDC = OffScreen;
 
 	MyScreen = CreateCompatibleDC(WindowDC);
-	MyScreenBitMap = CreateCompatibleBitmap(WindowDC, 2048, 768);
+	MyScreenBitMap = CreateCompatibleBitmap(WindowDC, 5427, 768);
 	OldBitMap = (HBITMAP)SelectObject(MyScreen, MyScreenBitMap);
 	RECT rect;
 	rect.left = 0;
 	rect.top = 0;
-	rect.right = 2048;
-	rect.bottom = 768;
-	UINT Key = SingleImegeManeger.CreateImege(rect, L"../../../data/StageGound.bmp", WindowDC);
+	rect.right = 5427;
+	rect.bottom = 1500;
+	UINT Key = SingleImegeManeger.CreateImege(rect, L"../../../data/BackGround2.bmp", WindowDC);
 	MyBackGroundImege = SingleImegeManeger.GetImege(Key);
 
 	iSoundIndex = SingleSoundManeger.Load("../../../data/sigma.mp3");
 	
-	MyPoint.x = 1024;
+	MyPoint.x = 5427 / 2;
 	MyPoint.y = 768 / 2;
 
 	CameraPoint.x = 0;
@@ -230,7 +221,7 @@ bool SssStage::Frame()
 		Player.Frame();
 		if (Player.m_iIndex == m_iIndex)
 		{
-			if (Player.GetPos().x >= 516 && Player.GetPos().x <= 1536)
+			if (Player.GetPos().x >= 516 && Player.GetPos().x <= 4718)
 			{
 				CameraPoint.x = Player.GetPos().x - 516;
 			}
@@ -238,22 +229,22 @@ bool SssStage::Frame()
 			{
 				CameraPoint.x = 0;
 			}
-			else if (Player.GetPos().x < 1536)
+			else if (Player.GetPos().x > 4718)
 			{
-				CameraPoint.x = 1024;
+				CameraPoint.x = 4198;
 			}
-			/*if (fReadyTime < fReadyMaxTime)
+			if (fReadyTime < fReadyMaxTime)
 			{
 				Player.SetReady();
 			}
-			if (bVictory)
+			if (Player.bVictory)
 			{
-				Player->SetVictory();
+				bVictory = true;
 			}
-			if (Player->GetDeath())
+			if (Player.GetDeath())
 			{
 				bLose = true;
-			}*/
+			}
 			Player.SetKeyState(VK_SPACE, SingleInput.GetMyStateKey(VK_SPACE));
 			Player.SetKeyState(VK_SHIFT, SingleInput.GetMyStateKey(VK_SHIFT));
 			Player.SetKeyState(VK_CONTROL, SingleInput.GetMyStateKey(VK_CONTROL));
@@ -262,7 +253,7 @@ bool SssStage::Frame()
 			Player.SetKeyState('D', SingleInput.GetMyStateKey('D'));
 		}
 	}
-	
+	m_Victory.Frame();
 	if (fReadyTime < fReadyMaxTime)
 	{
 		fReadyTime += GetSecPerFrame;
@@ -290,12 +281,12 @@ bool SssStage::Frame()
 }
 bool SssStage::Render()
 {
-
+		
 	COLORREF bkColor = RGB(255, 0, 0);
 	HBRUSH hbrBack = CreateSolidBrush(bkColor);
 	HBRUSH hbrOld = (HBRUSH)SelectObject(MyScreen, hbrBack);
 
-	PatBlt(MyScreen, 0, 0, 2048, 768, PATCOPY);
+	PatBlt(MyScreen, 0, 0, 5427, 1500, PATCOPY);
 
 	DeleteObject(SelectObject(MyScreen, hbrOld));
 
@@ -314,7 +305,7 @@ bool SssStage::Render()
 	{
 		Player.Render();
 	}
-
+	m_Victory.Render();
 	BitBlt(MyOffScreenDC, 0, 0, 1024, 768, MyScreen, CameraPoint.x, CameraPoint.y, SRCCOPY);
 	return true;
 }
@@ -322,7 +313,6 @@ bool SssStage::Release()
 {
 	m_Client.Release();
 	m_bLogin = false;
-	return true;
 
 	for (SssWall& WallObject : m_WallArray)
 	{
@@ -332,12 +322,14 @@ bool SssStage::Release()
 	{
 		GroundObject.Release();
 	}
-	MyBos->Release();
+	if (MyBos != nullptr)MyBos->Release();
 
 	for (SssPlayer& Player : m_PlayerArray)
 	{
 		Player.Release();
 	}
+	m_Victory.Release();
+
 	m_WallArray.clear();
 	m_GroundArray.clear();
 	m_PlayerArray.clear();
@@ -347,10 +339,10 @@ bool SssStage::Release()
 	DeleteObject(SelectObject(MyScreen, OldBitMap));
 	DeleteDC(MyScreen);
 	
-	m_Client.Release();
 	g_Stage = nullptr;
 	m_fLoginWait = 0.0f;
 	PlayerName.clear();
+	m_iIndex = -1;
 
 	return true;
 }
@@ -366,6 +358,14 @@ bool SssStage::PacketProcess()
 		case PACKET_JOIN_USER_SC:
 		{
 			m_iIndex = *((int*)pack.msg);
+
+			PACKET pack;
+			pack.Header.type = PACKET_CHAR_NAME_CS_SEND;
+			pack.Header.len = PACKET_HEADER_SIZE + sizeof(PlayerName.size());
+
+			strcpy_s(pack.msg, PlayerName.c_str());
+			I_SendPacketPool.Push(pack);
+
 		}break;
 		case PACKET_CHAR_NAME_SC_REQ:
 		{
@@ -421,6 +421,7 @@ bool SssStage::PacketProcess()
 SssStage::SssStage()
 {
 	m_bLogin = false;
+	MyBos = nullptr;
 }
 
 

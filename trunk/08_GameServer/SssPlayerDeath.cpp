@@ -7,7 +7,7 @@ bool SssPlayerDeath::Init(SssPlayer* Parent, HDC OffScreen, SssPoint* Pos, HDC W
 	MyRealPos = Pos;
 	MyCollider = TargetCollider;
 	int Key = SingleSpriteManeger.GetKey(L"RectDeath");
-	iSoundIndex = SingleSoundManeger.Load("../Data/PlayerDeath.wav");
+	iSoundIndex = SingleSoundManeger.Load("../../../data/PlayerDeath.wav");
 	bSoundPlay = false;
 	ArrowKey = 'D';
 	DeathTIme = 0.0f;

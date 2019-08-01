@@ -4,6 +4,7 @@
 #include "SssPlayer.h"
 #include "SssWall.h"
 #include "SssMainBoss.h"
+#include "SVictory.h"
 
 class SssStage : public SssSceeen
 {
@@ -18,7 +19,7 @@ public:
 	std::vector<SssWall> m_WallArray;
 	std::vector<SssGround> m_GroundArray;
 	SssMainBoss* MyBos;
-
+	SVictory	 m_Victory;
 	float fReadyTime;
 	float fReadyMaxTime;
 	int iSoundIndex;

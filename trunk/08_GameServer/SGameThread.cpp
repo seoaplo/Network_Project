@@ -91,6 +91,7 @@ DWORD WINAPI GameThread(LPVOID arg)
 					memcpy(pack.msg, &GroundState, sizeof(GROUND_STATE));
 					TargetUser.PushSendPacket(pack);
 				}
+				printf("\n플레이어 : %d 로그인 완료", UserNum);
 			}break;
 		}
 		

@@ -50,6 +50,7 @@ bool SssPlayer::Init(HDC OffScreen, POINT TargetPos, HDC WindowDC)
 
 	MyCollider = &CollisionManeger.AddCollider(MyPos, MyRect, this, Col_Rect);
 
+	m_bLogin = false;
 	m_iIndex = -1;
 
 	int SpriteNumber;
@@ -280,7 +281,7 @@ bool SssPlayer::Frame()
 		bStopRight = false;
 		bStopLeft = false;
 	}
-	if (MyHP <= 0)
+	if (MyPos.y > 768)
 	{
 		bDeatth = true;
 		bDeathTime += GetSecPerFrame;
@@ -577,9 +578,12 @@ bool SssPlayer::CheckEvent(SssObject& TargetObject)
 				TargetObject.GetName() == L"SubBossObject")
 			{
 				bDamege = true;
-				MyHP -= 1;
 			}
 		}
+	}
+	if (TargetObject.GetName() == L"VictoryObject")
+	{
+		bVictory = true;
 	}
 		
 	

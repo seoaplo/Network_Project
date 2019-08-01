@@ -23,6 +23,7 @@ DWORD WINAPI JoinThread(LPVOID arg)
 			memcpy(pack.msg, &UserNumber, sizeof(USER_NUM));
 
 			TargetUser.PushSendPacket(pack);
+			printf("\n플레이어 : %d 로그인 시도", UserNum);
 		}break;
 		case PACKET_CHAR_NAME_CS_SEND:
 		{
@@ -38,6 +39,7 @@ DWORD WINAPI JoinThread(LPVOID arg)
 			memcpy(Packet.msg, &msg, sizeof(USER_NAME_REQ));
 
 			TargetUser.PushSendPacket(Packet);
+			printf("\n플레이어 : %d 이름 등록", UserNum);
 		}break;
 		default:
 			E_MSG("알 수 없는 패킷 - JoinPacket");

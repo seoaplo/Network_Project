@@ -1,20 +1,17 @@
 #pragma once
+#include "Protocol.h"
 #include "Game/SssObject.h"
 #include "SssBullet.h"
 #include "SssFSM.h"
 #include <time.h>
 #include "SssSubBoss1.h"
 #include "SssSubBoss2.h"
-
 enum BossState
 {
 	Boss_Idle = 0,
 	Boss_Spawn,
 	Boss_Teleport1,
 	Boss_Teleport2,
-	Boss_Death,
-	Boss_Summon,
-	Boss_Magic,
 	Boss_StateSize
 };
 
@@ -24,9 +21,6 @@ enum BossEvent
 	Boss_EventSpawn,
 	Boss_EventTeleport1,
 	Boss_EventTeleport2,
-	Boss_EventDeath,
-	Boss_EventSummon,
-	Boss_EventMagic,
 	Boss_EventSize
 };
 
@@ -48,14 +42,6 @@ public:
 	bool bIdle;
 	float MyIdleTime;
 	float MyidleMaxTime;
-public:
-	bool bAttack;
-	bool bSummon;
-	bool bMagic;
-	float MySummonTime;
-	float MySummonMaxTime;
-	float MyMagicTime;
-	float MyMagicMaxTime;
 public:
 	bool bTeleport1;
 	bool bTeleport2;
@@ -82,15 +68,7 @@ public:
 	bool Release();
 	bool CheckEvent(SssObject& TargetObject);
 public:
-	bool bSubBoss1;
-	float SubBoss1MaxTime;
-	float SubBoss1Time;
-	SssSubBoss1 MySssSubBoss1;
-public:
-	bool bSubBoss2;
-	float SubBoss2MaxTime;
-	float SubBoss2Time;
-	SssSubBoss2 MySssSubBoss2;
+	virtual bool PacketProcess(PACKET pack);
 public:
 	void GetPlayer(SssObject& Player)
 	{

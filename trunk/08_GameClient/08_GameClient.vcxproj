@@ -141,6 +141,7 @@
     <ClInclude Include="SssTitle.h" />
     <ClInclude Include="SssTitleObject.h" />
     <ClInclude Include="SssWall.h" />
+    <ClInclude Include="SVictory.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SPacketThread.cpp" />
@@ -172,6 +173,7 @@
     <ClCompile Include="SssTitle.cpp" />
     <ClCompile Include="SssTitleObject.cpp" />
     <ClCompile Include="SssWall.cpp" />
+    <ClCompile Include="SVictory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc" />

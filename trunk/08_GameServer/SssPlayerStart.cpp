@@ -9,7 +9,7 @@ bool SssPlayerStart::Init(SssPlayer* Parent, HDC OffScreen, SssPoint* Pos, HDC W
 	int Key =  SingleSpriteManeger.GetKey(L"RectStartBeam");
 	Teleport = SingleSpriteManeger.GetSprite(Key);
 	Teleport->Init();
-	iSoundIndex = SingleSoundManeger.Load("../Data/StartTelePort.wav");
+	iSoundIndex = SingleSoundManeger.Load("../../../data/StartTelePort.wav");
 	fSoundSize = 0;
 	fSoundMaxSize = ((SingleSoundManeger.GetSoundSize(iSoundIndex)) / 1000.0f) / 60.0f;
 	ArrowKey = 'D';
@@ -20,7 +20,7 @@ bool SssPlayerStart::Frame()
 	float fChangeTime = 0.0f;
 	if (pParent->bTeleport)
 	{
-		fChangeTime = pParent->iDashSpeed * 3 * GetSecPerFrame;
+		fChangeTime = 100 * 3 * GetSecPerFrame;
 		pParent->MyRealPos->y += min(7, fChangeTime);
 			
 	}

@@ -12,9 +12,6 @@ enum BossState
 	Boss_Spawn,
 	Boss_Teleport1,
 	Boss_Teleport2,
-	Boss_Death,
-	Boss_Summon,
-	Boss_Magic,
 	Boss_StateSize
 };
 
@@ -24,9 +21,6 @@ enum BossEvent
 	Boss_EventSpawn,
 	Boss_EventTeleport1,
 	Boss_EventTeleport2,
-	Boss_EventDeath,
-	Boss_EventSummon,
-	Boss_EventMagic,
 	Boss_EventSize
 };
 
@@ -48,14 +42,6 @@ public:
 	bool bIdle;
 	float MyIdleTime;
 	float MyidleMaxTime;
-public:
-	bool bAttack;
-	bool bSummon;
-	bool bMagic;
-	float MySummonTime;
-	float MySummonMaxTime;
-	float MyMagicTime;
-	float MyMagicMaxTime;
 public:
 	bool bTeleport1;
 	bool bTeleport2;

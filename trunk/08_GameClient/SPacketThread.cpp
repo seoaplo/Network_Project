@@ -1,15 +1,18 @@
 #include "SPacketThread.h"
 
 bool SPacketThread::g_bProcessSuccecss;
+HANDLE SPacketThread::g_hThread = NULL;
 
 DWORD WINAPI PacketThread(LPVOID arg)
 {
 	SPacketThread* Process = (SPacketThread*)arg;
 
-	SPacketThread::g_bProcessSuccecss = true;
 	while (SPacketThread::g_bProcessSuccecss)
 	{
-		SPacketThread::g_bProcessSuccecss = Process->PacketProcess();
+		if (Process->PacketProcess() == false)
+		{
+			E_MSG("PacketThread Error");
+		}
 	}
 	return 1;
 }
@@ -41,8 +44,8 @@ bool SPacketThread::Init()
 	//-------------------SELECT---------------------------
 	m_addlen = sizeof(SOCKADDR_IN);
 
-
-	m_hThread = CreateThread(0, 0, PacketThread, (LPVOID)this, 0, &m_iThreadID);
+	g_bProcessSuccecss = true;
+	g_hThread = CreateThread(0, 0, PacketThread, (LPVOID)this, 0, &m_iThreadID);
 	return true;
 }
 bool SPacketThread::Frame()
@@ -52,10 +55,13 @@ bool SPacketThread::Frame()
 bool SPacketThread::Release()
 {
 	g_bProcessSuccecss = false;
-	if (PacketThread != NULL) CloseHandle(m_hThread);
+	FD_ZERO(&m_rSet);
+	FD_ZERO(&m_wSet);
+
+	if (PacketThread != NULL) CloseHandle(g_hThread);
 	if (m_Sock != NULL) closesocket(m_Sock);
 	m_Sock = NULL;
-	m_hThread = NULL;
+	g_hThread = NULL;
 	return true;
 }
 
@@ -171,8 +177,6 @@ bool SPacketThread::Recv()
 
 bool SPacketThread::Send()
 {
-	if (I_SendPacketPool.Empty() == true) return true;
-
 	SScopeRock_Mutex Lock(m_Mutex);
 	while (I_SendPacketPool.Empty() == false)
 	{
@@ -204,9 +208,11 @@ bool SPacketThread::Send()
 
 SPacketThread::SPacketThread()
 {
+	g_hThread = NULL;
 }
 
 
 SPacketThread::~SPacketThread()
 {
+	g_hThread = NULL;
 }

@@ -1,6 +1,21 @@
 #include "SssMainBoss.h"
 
+bool SssMainBoss::PacketProcess(PACKET pack)
+{
+	switch (pack.Header.type)
+	{
+		case PACKET_BOSS_SET:
+		{
+			BOSS_STATE BossState;
+			memcpy(&BossState, pack.msg, sizeof(BOSS_STATE));
 
+			MyPos = BossState.BossPoint;
+			MyState = BossState.BossState;
+			MybeforeState = BossState.BossState;
+		}
+	}
+	return true;
+}
 
 bool SssMainBoss::Init(HDC OffScreen, POINT TargetPos, HDC WindowDC)
 {
@@ -37,23 +52,13 @@ bool SssMainBoss::Init(HDC OffScreen, POINT TargetPos, HDC WindowDC)
 	MyIdleTime = 0.0f;
 	MyidleMaxTime = 1.0f;
 
-	bAttack = false;
-	bSummon = false;
-	bMagic = false;
-
-	MySummonTime = 0.0f;
-	MySummonMaxTime = 1.0f;
-
-	MyMagicTime = 0.0f;
-	MyMagicMaxTime = 1.0f;
-
 	bTeleport1 = false;
 	MyTeleportTime1 = 0.0f;
 	MyTeleportMaxTime1 = 1.0f;
 
 	bStop = false;
 	MyStopTime = 0.0f;
-	MyStopMaxTime = 6.0f;
+	MyStopMaxTime = 3.0f;
 
 	bTeleport2 = false;
 	MyTeleportTime2 = 0.0f;
@@ -63,7 +68,7 @@ bool SssMainBoss::Init(HDC OffScreen, POINT TargetPos, HDC WindowDC)
 	DamegeMaxTime = 0.1f;
 
 	int SpriteNumber = SingleSpriteManeger.CreateSprite
-	(L"../Data/BossRect.txt", L"../Data/MainBoss.bmp", L"BossIdle", MyColor, WindowDC, MyidleMaxTime);
+	(L"../../../data/BossRect.txt", L"../../../data/MainBoss.bmp", L"BossIdle", MyColor, WindowDC, MyidleMaxTime);
 	MySprite = SingleSpriteManeger.GetSprite(SpriteNumber);
 	MyStateList.insert(std::make_pair(Boss_Idle, MySprite));
 	MySprite->Init();
@@ -86,45 +91,10 @@ bool SssMainBoss::Init(HDC OffScreen, POINT TargetPos, HDC WindowDC)
 	MyStateList.insert(std::make_pair(Boss_Teleport2, MySprite));
 	MySprite->Init();
 
-	SpriteNumber = SingleSpriteManeger.GetKey(L"BossDeath");
-	MySprite = SingleSpriteManeger.GetSprite(SpriteNumber);
-	MySprite->SetDrawTime(1);
-	MyStateList.insert(std::make_pair(Boss_Death, MySprite));
-	MySprite->Init();
-
-	SpriteNumber = SingleSpriteManeger.GetKey(L"BossSummon");
-	MySprite = SingleSpriteManeger.GetSprite(SpriteNumber);
-	MySprite->SetDrawTime(MySummonMaxTime);
-	MyStateList.insert(std::make_pair(Boss_Summon, MySprite));
-	MySprite->Init();
-
-	SpriteNumber = SingleSpriteManeger.GetKey(L"BossMagic");
-	MySprite = SingleSpriteManeger.GetSprite(SpriteNumber);
-	MySprite->SetDrawTime(MyMagicMaxTime);
-	MyStateList.insert(std::make_pair(Boss_Magic, MySprite));
-	MySprite->Init();
-
 	MyState = Boss_Spawn;
 	MySprite = MyStateList.find(MyState)->second;
 
 	MyHP = 100;
-
-	POINT SubBoss1Point;
-	SubBoss1Point.x = 200;
-	SubBoss1Point.y = 600;
-	bSubBoss1 = false;
-	SubBoss1MaxTime = 6.0f;
-	SubBoss1Time = 0;
-
-	POINT SubBoss2Point;
-	SubBoss2Point.x = 100;
-	SubBoss2Point.y = 450;
-	bSubBoss2 = false;
-	SubBoss2MaxTime = 4.0f;
-	SubBoss2Time = 0;
-
-	MySssSubBoss1.Init(OffScreen, SubBoss1Point, WindowDC);
-	MySssSubBoss2.Init(OffScreen, SubBoss2Point, WindowDC);
 	
 	return true;
 }
@@ -144,39 +114,9 @@ bool SssMainBoss::Frame()
 	{
 		MyIdleTime = 0;
 		bIdle = false;
-		bAttack = true;
-	}
-	if (bAttack && !bIdle)
-	{
-		bSummon = true;
-		bAttack = false;
-		if (rand() % 2 != 0)
-		{
-			bSubBoss1 = true;
-			MySssSubBoss1.SetReady();
-		}
-		else
-		{
-			bSubBoss2 = true;
-			MySssSubBoss2.SetReady();
-		}
-
-	}
-
-	
-	if(bSummon && MySummonTime < MySummonMaxTime)
-	{
-		MySummonTime += GetSecPerFrame;
-		MyState = MyFsm.GetState(MyState, Boss_Summon);
-	}
-	else if(bSummon)
-	{
-		MyMagicTime = 0;
-		MySummonTime = 0;
-		bSummon = false;
-		bMagic = false;
 		bTeleport1 = true;
 	}
+
 	if (bTeleport1 && MyTeleportTime1 < MyTeleportMaxTime1)
 	{
 		MyTeleportTime1 += GetSecPerFrame;
@@ -191,25 +131,6 @@ bool SssMainBoss::Frame()
 		bStop = true;
 	}
 
-	if (bSubBoss1 && SubBoss1MaxTime > SubBoss1Time)
-	{
-		SubBoss1Time += GetSecPerFrame;
-	}
-	else if(bSubBoss1)
-	{
-		bSubBoss1 = false;
-		SubBoss1Time = 0;
-	}
-	if (bSubBoss2 && SubBoss2MaxTime > SubBoss2Time)
-	{
-		SubBoss2Time += GetSecPerFrame;
-	}
-	else if (bSubBoss2)
-	{
-		bSubBoss2 = false;
-		SubBoss2Time = 0;
-	}
-
 	if (bStop && MyStopTime < MyStopMaxTime)
 	{
 		MyStopTime += GetSecPerFrame;	
@@ -218,8 +139,8 @@ bool SssMainBoss::Frame()
 	{
 		bStop = false;
 		MyStopTime = 0;
-		int Xpos = rand() % (2048 - 400) + 200;
-		int Ypos = rand() % (768 - 380) + 190;
+		int Xpos = (MyPlayer->GetPos().x - 200) + (rand() % 400);
+		int Ypos = (MyPlayer->GetPos().y - 200) + (rand() % 400);
 		MyPos.x = Xpos;
 		MyPos.y = Ypos;
 		bTeleport2 = true;
@@ -248,23 +169,6 @@ bool SssMainBoss::Frame()
 		bIdle = true;
 	}
 
-	if (MyHP <= 0)
-	{
-		MyState = MyFsm.GetState(MyState, Boss_Death);
-		if (MyCollider != NULL)
-		{
-			CollisionManeger.DeleteColider(MyCollider);
-			MyCollider = NULL;
-			bDeath = true;
-		}
-	}
-	else
-	{
-		MyCollider->SetPoint(MyPos);
-		MySssSubBoss1.GetPlayerPoint(MyPlayer->GetPos());
-		MySssSubBoss1.Frame();
-		MySssSubBoss2.Frame();
-	}
 	if (MybeforeState != MyState)
 	{
 		MySprite->Init();
@@ -276,6 +180,7 @@ bool SssMainBoss::Frame()
 		MybeforeState = MyState;
 	}
 	DamegeTime += GetSecPerFrame;
+	MyCollider->SetPoint(MyPos);
 	return true;
 }
 bool SssMainBoss::Render()
@@ -308,8 +213,6 @@ bool SssMainBoss::Render()
 		BitBlt(MyOffScreen, CameraRect.left, CameraRect.top, CameraRect.right, CameraRect.bottom,
 			MyScreen, 0, 0, SRCCOPY);
 	}
-	MySssSubBoss1.Render();
-	MySssSubBoss2.Render();
 	
 	
 	return true;
@@ -322,8 +225,6 @@ bool SssMainBoss::Release()
 		CollisionManeger.DeleteColider(MyCollider);
 		MyCollider = NULL;
 	}
-	MySssSubBoss1.Release();
-	MySssSubBoss2.Release();
 	DeleteObject(SelectObject(MyScreen, MyOldBitMap));
 	DeleteDC(MyScreen);
 
@@ -331,17 +232,6 @@ bool SssMainBoss::Release()
 }
 bool SssMainBoss::CheckEvent(SssObject& TargetObject)
 {
-	if (TargetObject.GetName() == L"Player_Bullet")
-	{
-		if (MyState == Boss_Idle || MyState == Boss_Summon || MyState == Boss_Magic)
-		{
-			if (DamegeMaxTime <= DamegeTime)
-			{
-				MyHP -= 1;
-				DamegeTime = 0;
-			}
-		}
-	}
 	return true;
 }
 

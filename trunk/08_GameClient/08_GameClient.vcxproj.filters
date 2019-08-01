@@ -65,6 +65,9 @@
       <Filter>Server</Filter>
     </ClInclude>
     <ClInclude Include="resource.h" />
+    <ClInclude Include="SVictory.h">
+      <Filter>GameLogic\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SssSampler.cpp">
@@ -153,6 +156,9 @@
     </ClCompile>
     <ClCompile Include="SClient.cpp">
       <Filter>Server</Filter>
+    </ClCompile>
+    <ClCompile Include="SVictory.cpp">
+      <Filter>GameLogic\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

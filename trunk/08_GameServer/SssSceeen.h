@@ -1,4 +1,6 @@
 #pragma once
+#include "SServerStd.h"
+#include "Protocol.h"
 #include "Game/Ssslibheader.h"
 
 enum Sceen

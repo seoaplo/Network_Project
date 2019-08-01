@@ -6,7 +6,7 @@ bool SssPlayerDamege::Init(SssPlayer* Parent, HDC OffScreen, SssPoint* Pos, HDC 
 	MyOffScreen = OffScreen;
 	MyRealPos = Pos;
 	MyCollider = TargetCollider;
-	iSoundIndex = SingleSoundManeger.Load("../Data/Damege.wav");
+	iSoundIndex = SingleSoundManeger.Load("../../../data/Damege.wav");
 	fSoundSize = 0;
 	fSoundMaxSize = ((SingleSoundManeger.GetSoundSize(iSoundIndex)) / 1000.0f) / 60.0f;
 	return true;

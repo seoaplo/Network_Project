@@ -35,13 +35,13 @@ bool SssSubBoss1::Init(HDC OffScreen, POINT TargetPos, HDC WindowDC)
 	fAttackEndMaxTime = 0.5f;
 
 	UINT ImegeKey = SingleSpriteManeger.CreateSprite
-	(L"../Data/SubBoss1.txt", L"../Data/SubBoss1.bmp", L"SubBoss1Attack", MyColor, WindowDC, fAttackReadyMaxTime);
+	(L"../../../data/SubBoss1.txt", L"../../../data/SubBoss1.bmp", L"SubBoss1Attack", MyColor, WindowDC, fAttackReadyMaxTime);
 	SpriteImege = SingleSpriteManeger.GetSprite(ImegeKey);
 	
 	SpriteImege->Init();
 
 	ImegeKey = SingleSpriteManeger.CreateSprite
-	(L"../Data/SubBoss1.txt", L"../Data/SubBoss1.bmp", L"SubBoss1End", MyColor, WindowDC, fAttackEndMaxTime);
+	(L"../../../data/SubBoss1.txt", L"../../../data/SubBoss1.bmp", L"SubBoss1End", MyColor, WindowDC, fAttackEndMaxTime);
 	SpriteMask = SingleSpriteManeger.GetSprite(ImegeKey);
 
 	SpriteMask->Init();
@@ -55,7 +55,7 @@ bool SssSubBoss1::Init(HDC OffScreen, POINT TargetPos, HDC WindowDC)
 	MyLength = sqrt((Xpos * Xpos) + (Ypos * Ypos));
 
 	MyCollider = NULL;
-	iSoundIndex = SingleSoundManeger.Load("../Data/SubBossBullet.wav");
+	iSoundIndex = SingleSoundManeger.Load("../../../data/SubBossBullet.wav");
 	SingleSoundManeger.Volume(iSoundIndex, 1, true);
 
 	fBulletShootTime = 0.0f;

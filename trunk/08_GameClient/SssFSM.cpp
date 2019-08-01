@@ -38,13 +38,6 @@ SssFSM::~SssFSM()
 	std::multimap<DWORD, std::multimap<DWORD, DWORD>>::iterator ReleaseIter = StateList.begin();
 	while (ReleaseIter != StateList.end())
 	{
-		std::multimap<DWORD, DWORD>::iterator ReleaseIter2 = ReleaseIter->second.begin();
-		while (ReleaseIter != StateList.end())
-		{
-			std::multimap<DWORD, DWORD>::iterator ReleaseIter2 = ReleaseIter->second.begin();
-			ReleaseIter2->second = NULL;
-			ReleaseIter++;
-		}
 		ReleaseIter->second.clear();
 		ReleaseIter++;
 	}

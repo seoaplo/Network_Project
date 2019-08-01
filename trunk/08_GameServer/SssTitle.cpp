@@ -11,7 +11,7 @@ bool SssTitle::Init(HDC WindowDC, HDC OffScreen)
 	rect.top = 0;
 	rect.right = 1024;
 	rect.bottom = 768;
-	UINT Key = SingleImegeManeger.CreateImege(rect, L"../Data/Title1.bmp", WindowDC);
+	UINT Key = SingleImegeManeger.CreateImege(rect, L"../../../data/Title1.bmp", WindowDC);
 	MyBackGroundImege = SingleImegeManeger.GetImege(Key);
 	MyPoint.x = 1024 / 2;
 	MyPoint.y = 768 / 2;
@@ -29,8 +29,8 @@ bool SssTitle::Init(HDC WindowDC, HDC OffScreen)
 	TitleNameRect.top = 0;
 	TitleNameRect.right = 0;
 	TitleNameRect.bottom = 0;
-	TitleName->Init(MyOffScreenDC, TitleNamePos, WindowDC, NULL, TitleNameRect, L"../Data/BackGround3.bmp", L"RectTitle1",
-		L"../Data/TitleRect1.txt", Color, false, 2);
+	TitleName->Init(MyOffScreenDC, TitleNamePos, WindowDC, NULL, TitleNameRect, L"../../../data/BackGround3.bmp", L"RectTitle1",
+		L"../../../data/TitleRect1.txt", Color, false, 2);
 	TitleObjectList.push_back(TitleName);
 
 	TitleName = new SssTitleObject;
@@ -42,8 +42,8 @@ bool SssTitle::Init(HDC WindowDC, HDC OffScreen)
 	TitleNameRect1.top = 0;
 	TitleNameRect1.right = 0;
 	TitleNameRect1.bottom = 0;
-	TitleName->Init(MyOffScreenDC, TitleNamePos1, WindowDC, NULL, TitleNameRect1, L"../Data/BackGround3.bmp", L"RectTitle2",
-		L"../Data/TitleRect1.txt", Color, false, 2);
+	TitleName->Init(MyOffScreenDC, TitleNamePos1, WindowDC, NULL, TitleNameRect1, L"../../../data/BackGround3.bmp", L"RectTitle2",
+		L"../../../data/TitleRect1.txt", Color, false, 2);
 	TitleObjectList.push_back(TitleName);
 
 	TitleName = new SssStartObject;
@@ -55,8 +55,8 @@ bool SssTitle::Init(HDC WindowDC, HDC OffScreen)
 	TitleNameRect2.top = 410;
 	TitleNameRect2.right = 87 * 4;
 	TitleNameRect2.bottom = 7 * 4;
-	TitleName->Init(MyOffScreenDC, TitleNamePos2, WindowDC, "../Data/Select.wav", TitleNameRect2, L"../Data/BackGround3.bmp", L"RectStartGame",
-		L"../Data/TitleRect1.txt", Color, true, 4);
+	TitleName->Init(MyOffScreenDC, TitleNamePos2, WindowDC, "../../../data/Select.wav", TitleNameRect2, L"../../../data/BackGround3.bmp", L"RectStartGame",
+		L"../../../data/TitleRect1.txt", Color, true, 4);
 	TitleObjectList.push_back(TitleName);
 
 	TitleName = new SssExitObject;
@@ -68,11 +68,11 @@ bool SssTitle::Init(HDC WindowDC, HDC OffScreen)
 	TitleNameRect3.top = 450;
 	TitleNameRect3.right = 32 * 4;
 	TitleNameRect3.bottom = 7 * 4;
-	TitleName->Init(MyOffScreenDC, TitleNamePos3, WindowDC, "../Data/Select.wav", TitleNameRect3, L"../Data/BackGround3.bmp", L"RectExit",
-		L"../Data/TitleRect1.txt", Color, true, 4);
+	TitleName->Init(MyOffScreenDC, TitleNamePos3, WindowDC, "../../../data/Select.wav", TitleNameRect3, L"../../../data/BackGround3.bmp", L"RectExit",
+		L"../../../data/TitleRect1.txt", Color, true, 4);
 	TitleObjectList.push_back(TitleName);
 
-	iSoundIndex = SingleSoundManeger.Load("../Data/Title.wav");
+	iSoundIndex = SingleSoundManeger.Load("../../../data/Title.wav");
 	SingleSoundManeger.Play(iSoundIndex, FMOD_LOOP_NORMAL);
 
 	SingleSoundManeger.Volume(iSoundIndex, 0.5f, false);

@@ -12,9 +12,9 @@ public:
 	int m_addlen;
 
 	DWORD	m_iThreadID;
-	HANDLE	m_hThread;
 	SmartMutex m_Mutex;
 
+	static HANDLE	g_hThread;
 	static bool g_bProcessSuccecss;
 
 	DWORD			m_dwEndPos;
